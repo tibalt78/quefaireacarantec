@@ -123,6 +123,13 @@ h2{font-size:24px;margin:4px 0 4px}
 .warn{background:#fff7e8;border:1px solid #f1dcae;border-radius:14px;padding:12px 14px;font-size:13.5px;color:#6f5420;margin:14px 0}
 footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--mute);font-size:12.5px}
 footer b{color:var(--ink2)}
+.cta{display:flex;gap:14px;align-items:flex-start;background:var(--ink);color:#fff;border-radius:20px;padding:18px}
+.cta-ic{font-size:28px;line-height:1}
+.cta b{font-family:Lora,Georgia,serif;font-size:19px;display:block}
+.cta p{margin:6px 0 12px;color:#d8d8e6;font-size:14px}
+.cta-btn{display:inline-block;background:var(--gold);color:var(--ink);font-weight:700;padding:9px 14px;border-radius:999px;text-decoration:none;font-size:14.5px;word-break:break-all}
+.minicta{font-size:13px;color:var(--ink2);margin:14px 0 0}
+.minicta a{color:var(--coral);font-weight:600}
 h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
 .tab,.chip{font-family:Poppins,system-ui,sans-serif}
 .brand{display:flex;align-items:center;gap:14px;margin:0 0 10px;font-weight:400}
@@ -198,10 +205,21 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
 
 </main>
 
+
+<section class="contact on" id="contact-bloc" style="display:block;padding:0 0 30px"><div class="wrap">
+  <div class="cta">
+    <div class="cta-ic">✉️</div>
+    <div>
+      <b>Vous organisez un événement près de Carantec ?</b>
+      <p>Envoyez-nous la date, l'heure, le lieu et le tarif : nous l'ajoutons à l'agenda et aux stories Facebook.</p>
+      <a class="cta-btn" href="mailto:quefaireacarantec@gmail.com?subject=Un%20%C3%A9v%C3%A9nement%20%C3%A0%20annoncer">quefaireacarantec@gmail.com</a>
+    </div>
+  </div>
+</div></section>
 <footer><div class="wrap">
   <div class="brand mini" role="img" aria-label="Que faire à Carantec et ses environs ?"><svg class="q" viewBox="0 0 180 262" aria-hidden="true"><path d="M 38 74 C 38 18, 142 18, 142 74 C 142 116, 90 112, 90 164" fill="none" stroke="#C8287A" stroke-width="34" stroke-linecap="round"/><circle cx="90" cy="214" r="23" fill="#F2C230" stroke="#D99A00" stroke-width="3"/><path d="M 40 248 q 12 -10 25 0 t 25 0 t 25 0 t 25 0" fill="none" stroke="#3A9E8F" stroke-width="7" stroke-linecap="round"/></svg><span><span class="b1">Que faire à</span><span class="b2">Carantec</span><span class="b3">et ses environs</span></span></div>
-Retrouvez-nous sur Facebook : <b>Que faire à Carantec et ses environs ?</b><br>
-  Sources : agenda de l'Office de tourisme Roscoff – Côte des Sables, Office de tourisme Baie de Morlaix, Le Télégramme, associations et organisateurs, AlloCiné / cinema.bzh. Un tarif n'est affiché que lorsqu'il est confirmé par l'organisateur ou l'office de tourisme. Mise à jour : 8 novembre 2026 (vérification Le Télégramme).
+Retrouvez-nous sur Facebook : <b>Que faire à Carantec et ses environs ?</b><br>Un événement à annoncer : <a href="mailto:quefaireacarantec@gmail.com">quefaireacarantec@gmail.com</a><br>
+  Infos sous réserve de modification par les organisateurs. Mise à jour : 8 novembre 2026.
 </div></footer>
 
 <script>
@@ -566,7 +584,7 @@ function renderDay(){
   if(D.length){
     blocks.forEach(([n,a,b])=>{const l=D.filter(e=>hm(e.h)>=a&&hm(e.h)<b); if(l.length) h+=`<div class="group">${n}</div>`+l.map(evHTML).join("");});
   } else {
-    h+=`<div class="empty">Pas d'événement ponctuel annoncé ce jour-là${cat||onlyC?" avec ces filtres":""}.<br>Regardez les rendez-vous réguliers et les expos ci-dessous 👇</div>`;
+    h+=`<div class="empty">Pas d'événement ponctuel annoncé ce jour-là${cat||onlyC?" avec ces filtres":""}.<br>Regardez les rendez-vous réguliers et les expos ci-dessous 👇<br><span style="font-size:13px">Vous connaissez un événement ce jour-là ? Écrivez-nous : <a href="mailto:quefaireacarantec@gmail.com">quefaireacarantec@gmail.com</a></span></div>`;
   }
   if(W.length) h+=`<div class="group">🔁 Comme chaque ${JOURS[dt.getDay()]}</div>`+W.map(evHTML).join("");
   if(P.length) h+=`<div class="group">🎨 Expos et animations en cours</div>`+P.map(p=>evHTML({...p,h:"Jusqu'au",f:pd(p.to).getDate()+" "+MC[pd(p.to).getMonth()]})).join("");
