@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Que faire à Carantec et ses environs ?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 262'%3E%3Cpath d='M38 74C38 18 142 18 142 74C142 116 90 112 90 164' fill='none' stroke='%23C8287A' stroke-width='34' stroke-linecap='round'/%3E%3Ccircle cx='90' cy='214' r='23' fill='%23F2C230'/%3E%3C/svg%3E">
+<meta name="description" content="Agenda jour par jour de Carantec et ses environs : sorties, expos, sport, cinéma, restos et horaires de passage vers l'île Callot.">
+<link rel="canonical" href="https://quefaireacarantec.fr/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Que faire à Carantec et ses environs ?">
+<meta property="og:title" content="Que faire à Carantec et ses environs ?">
+<meta property="og:description" content="Tout ce qui se passe, jour après jour : sorties, expos, sport, ciné, restos et passages vers l'île Callot.">
+<meta property="og:url" content="https://quefaireacarantec.fr/">
+<meta property="og:image" content="https://quefaireacarantec.fr/img/partage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{
+  --ink:#24243C; --ink2:#4a4a62; --mute:#7c7c8e; --line:#e6e0d6;
+  --bg:#f3eee6; --card:#fff; --sea:#2f8a7d; --sea2:#e2f2ef; --sand:#f6e7bf;
+  --coral:#C8287A; --gold:#F2C230; --green:#3A9E8F; --mag:#C8287A;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Poppins,system-ui,sans-serif;font-size:15px;line-height:1.45}
+a{color:var(--sea)}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+/* HERO */
+.hero{position:relative;height:300px;overflow:hidden;color:#fff}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 62%}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,25,38,.15) 0%,rgba(8,25,38,.25) 45%,rgba(8,25,38,.82) 100%)}
+.hero .wrap{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:22px}
+.kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.9;font-weight:600}
+h1{font-weight:800;font-size:34px;line-height:1.05;margin:6px 0 8px}
+.hero p{margin:0;opacity:.92;max-width:520px}
+/* NAV */
+.tabs{position:sticky;top:0;z-index:20;background:rgba(246,243,238,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:6px;padding-top:10px;padding-bottom:10px;overflow-x:auto;scrollbar-width:none}
+.tab{border:0;background:transparent;font:600 14px Poppins;color:var(--ink2);padding:8px 14px;border-radius:999px;white-space:nowrap;cursor:pointer}
+.tab.on{background:var(--ink);color:#fff}
+section{display:none;padding:18px 0 40px}
+section.on{display:block}
+h2{font-size:24px;margin:4px 0 4px}
+.sub{color:var(--mute);font-size:13px;margin:0 0 14px}
+/* DATE STRIP */
+.strip{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:none;scroll-snap-type:x proximity}
+.d{flex:0 0 58px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:14px;text-align:center;padding:8px 0 7px;cursor:pointer;position:relative}
+.d .w{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);font-weight:600}
+.d .n{font-size:22px;font-weight:800;line-height:1.15}
+.d .m{font-size:11px;color:var(--mute)}
+.d .dots{display:flex;gap:3px;justify-content:center;height:6px;margin-top:3px}
+.d .dots i{width:5px;height:5px;border-radius:50%;background:var(--sea)}
+.d.today{border-color:var(--sea)}
+.d.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.d.on .w,.d.on .m{color:#c9d6de}
+.d.on .dots i{background:#fff}
+.d.past{opacity:.45}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0 14px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font:500 13px Poppins;color:var(--ink2);cursor:pointer}
+.chip.on{background:var(--sea);border-color:var(--sea);color:#fff}
+.toggle{margin-left:auto;font-size:13px;color:var(--ink2);display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+.toggle input{accent-color:var(--sea);width:16px;height:16px}
+/* DAY HEADER */
+.dayhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:8px 0 12px}
+.dayhead h3{font-size:26px;margin:0}
+.dayhead span{font-size:13px;color:var(--mute)}
+/* CALLOT */
+.callot{display:flex;gap:14px;background:var(--sea2);border-radius:18px;padding:12px;margin-bottom:18px;align-items:center}
+.callot img{width:74px;height:74px;border-radius:12px;object-fit:cover;flex:0 0 auto}
+.callot b{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--sea)}
+.slots{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.slot{background:#fff;border-radius:8px;padding:4px 9px;font-weight:700;font-size:14px}
+.callot small{display:block;color:var(--ink2);font-size:12px;margin-top:5px}
+.callot.none .slot{color:var(--coral)}
+/* EVENTS */
+.group{margin:18px 0 6px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:700;display:flex;align-items:center;gap:8px}
+.group:after{content:"";flex:1;height:1px;background:var(--line)}
+.ev{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin-bottom:8px}
+.ev .t{flex:0 0 56px;font-weight:700;font-size:15px;color:var(--ink)}
+.ev .t small{display:block;font-weight:500;font-size:12px;color:var(--mute)}
+.ev .b{flex:1;min-width:0}
+.ev .ti{font-weight:600;font-size:15.5px;line-height:1.3}
+.ev .pl{color:var(--ink2);font-size:13.5px;margin-top:2px}
+.ev .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.tag{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:#f0f3f5;color:var(--ink2)}
+.tag.cat{color:#fff}
+.tag.price{background:var(--sand);color:#7a5520}
+.tag.conf{background:#fdeee9;color:var(--coral)}
+.tag.here{background:var(--ink);color:#fff}
+.ev .x{font-size:13px;color:var(--ink2);margin-top:6px}
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:16px;padding:18px;text-align:center;color:var(--mute)}
+/* RESTOS */
+.restos{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.r{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:13.5px}
+.r b{display:block;font-size:14.5px}
+.r span{color:var(--mute);font-size:12.5px}
+.r .o{margin-top:5px;display:flex;gap:5px}
+.r .o i{font-style:normal;font-size:11.5px;font-weight:600;padding:2px 7px;border-radius:6px;background:#e7f3ec;color:var(--green)}
+.r .o i.off{background:#f3f3f3;color:#aaa;text-decoration:line-through}
+/* CONTINU */
+.cards{display:grid;gap:10px}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.pc .ti{font-weight:700;font-size:16px}
+.pc .when{display:inline-block;margin-top:6px;font-size:12.5px;font-weight:600;background:var(--sea2);color:var(--sea);padding:3px 9px;border-radius:999px}
+.pc p{margin:6px 0 0;font-size:13.5px;color:var(--ink2)}
+.pc ul{margin:6px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink2)}
+.week{display:grid;gap:8px}
+.wd{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.wd h4{margin:0 0 6px;font-size:18px}
+.wd li{font-size:13.5px;margin:3px 0;color:var(--ink2)}
+.wd li b{color:var(--ink)}
+.wd ul{list-style:none;padding:0;margin:0}
+/* CALLOT TAB */
+.ctable{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden;font-size:14px}
+.ctable td{padding:9px 12px;border-bottom:1px solid var(--line)}
+.ctable tr.we td{background:#fbf8f2}
+.ctable tr.today td{background:var(--sea2);font-weight:600}
+.ctable td.c{color:var(--mute);font-size:12.5px;text-align:right;white-space:nowrap}
+.warn{background:#fff7e8;border:1px solid #f1dcae;border-radius:14px;padding:12px 14px;font-size:13.5px;color:#6f5420;margin:14px 0}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--mute);font-size:12.5px}
+footer b{color:var(--ink2)}
+h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
+.tab,.chip{font-family:Poppins,system-ui,sans-serif}
+.brand{display:flex;align-items:center;gap:14px;margin:0 0 10px;font-weight:400}
+.brand .q{width:64px;height:auto;flex:0 0 auto}
+.brand .b1{display:block;font:700 13px/1.2 Poppins,sans-serif;letter-spacing:.32em;text-transform:uppercase}
+.brand .b2{display:block;font:700 54px/1 Lora,Georgia,serif;margin:2px 0 4px}
+.brand .b3{display:flex;align-items:center;gap:10px;font:700 12.5px/1.2 Poppins,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8fe0d2}
+.brand .b3:before{content:"";width:28px;height:3px;background:currentColor}
+.brand.mini .q{width:40px}.brand.mini .b1{font-size:10.5px;color:var(--ink)}
+.brand.mini .b2{font-size:32px;color:var(--ink)}.brand.mini .b3{font-size:10px;color:#3A9E8F}
+.tab.on{background:var(--ink)}.d.today{border-color:var(--mag)}
+@media(min-width:700px){.brand .q{width:86px}.brand .b1{font-size:16px}.brand .b2{font-size:76px}.brand .b3{font-size:15px}}
+@media(min-width:700px){h1{font-size:46px}.hero{height:380px}.restos{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:1fr 1fr}.week{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="img/hero.jpg" alt="Coucher de soleil sur la baie de Morlaix">
+  <div class="wrap">
+    <h1 class="brand"><svg class="q" viewBox="0 0 180 262" aria-hidden="true"><path d="M 38 74 C 38 18, 142 18, 142 74 C 142 116, 90 112, 90 164" fill="none" stroke="#C8287A" stroke-width="34" stroke-linecap="round"/><circle cx="90" cy="214" r="23" fill="#F2C230" stroke="#D99A00" stroke-width="3"/><path d="M 40 248 q 12 -10 25 0 t 25 0 t 25 0 t 25 0" fill="none" stroke="#8fe0d2" stroke-width="7" stroke-linecap="round"/></svg><span><span class="b1">Que faire à</span><span class="b2">Carantec</span><span class="b3">et ses environs ?</span></span></h1>
+    <p>Tout ce qui se passe, jour après jour, à moins de 20 km&nbsp;: sorties, expos, sport, ciné, restos et passages vers l'île Callot.</p>
+  </div>
+</header>
+
+<nav class="tabs"><div class="wrap">
+  <button class="tab on" data-tab="jour">📅 Jour par jour</button>
+  <button class="tab" data-tab="continu">🎨 En ce moment</button>
+  <button class="tab" data-tab="semaine">🔁 Chaque semaine</button>
+  <button class="tab" data-tab="callot">🌊 Île Callot</button>
+</div></nav>
+
+<main class="wrap">
+
+<!-- JOUR PAR JOUR -->
+<section id="jour" class="on">
+  <div class="strip" id="strip"></div>
+  <div class="row" id="cats"></div>
+  <div class="row" style="margin-top:-6px">
+    <label class="toggle" style="margin-left:0"><input type="checkbox" id="onlyC"> Carantec seulement</label>
+  </div>
+  <div class="dayhead"><h3 id="dayTitle"></h3><span id="dayCount"></span></div>
+  <div id="callotDay"></div>
+  <div id="dayList"></div>
+  <div class="group">🍽️ Restos ouverts à Carantec</div>
+  <div class="restos" id="restos"></div>
+</section>
+
+<!-- EN CE MOMENT -->
+<section id="continu">
+  <h2>En ce moment</h2>
+  <p class="sub">Expositions et animations qui durent plusieurs jours, plusieurs semaines ou toute l'année.</p>
+  <div class="cards" id="expos"></div>
+  <h2 style="margin-top:28px">Toute l'année</h2>
+  <p class="sub">Les lieux et activités à faire quand on veut.</p>
+  <div class="cards" id="perma"></div>
+</section>
+
+<!-- CHAQUE SEMAINE -->
+<section id="semaine">
+  <h2>Chaque semaine</h2>
+  <p class="sub">Marchés, cours et rendez-vous réguliers. La plupart des cours associatifs s'arrêtent pendant les vacances scolaires.</p>
+  <div class="week" id="week"></div>
+</section>
+
+<!-- CALLOT -->
+<section id="callot">
+  <h2>Passer à l'île Callot</h2>
+  <p class="sub">Créneaux où la route submersible est praticable, d'après le calendrier 2026 de l'office de tourisme (données Shom).</p>
+  <div class="warn">⚠️ Les horaires peuvent varier avec la météo (vent, pression). Ne vous engagez jamais sur la route si la mer est déjà dessus, et repartez avant la fin du créneau.</div>
+  <table class="ctable" id="ctable"></table>
+</section>
+
+</main>
+
+<footer><div class="wrap">
+  <div class="brand mini" role="img" aria-label="Que faire à Carantec et ses environs ?"><svg class="q" viewBox="0 0 180 262" aria-hidden="true"><path d="M 38 74 C 38 18, 142 18, 142 74 C 142 116, 90 112, 90 164" fill="none" stroke="#C8287A" stroke-width="34" stroke-linecap="round"/><circle cx="90" cy="214" r="23" fill="#F2C230" stroke="#D99A00" stroke-width="3"/><path d="M 40 248 q 12 -10 25 0 t 25 0 t 25 0 t 25 0" fill="none" stroke="#3A9E8F" stroke-width="7" stroke-linecap="round"/></svg><span><span class="b1">Que faire à</span><span class="b2">Carantec</span><span class="b3">et ses environs</span></span></div>
+Retrouvez-nous sur Facebook : <b>Que faire à Carantec et ses environs ?</b><br>
+  Sources : agenda de l'Office de tourisme Roscoff – Côte des Sables, Office de tourisme Baie de Morlaix, Le Télégramme, associations et organisateurs, AlloCiné / cinema.bzh. Un tarif n'est affiché que lorsqu'il est confirmé par l'organisateur ou l'office de tourisme. Mise à jour : 8 novembre 2026 (vérification Le Télégramme).
+</div></footer>
+
+<script>
+/* ===================== DONNÉES ===================== */
+const CATS = {
+  fete:{l:"Fêtes & marchés",e:"🎪",c:"#e2674b"},
+  culture:{l:"Culture & conférences",e:"🎭",c:"#7b5ea7"},
+  musique:{l:"Musique & danse",e:"🎶",c:"#c2477a"},
+  enfants:{l:"Enfants",e:"🧸",c:"#d9a441"},
+  sport:{l:"Sport",e:"⚽",c:"#3c8a5f"},
+  cine:{l:"Cinéma",e:"🎬",c:"#0f2a3a"},
+  nature:{l:"Nature & découverte",e:"🌿",c:"#0e6e8c"}
+};
+// d: date, h: heure, f: fin, t: titre, c: commune, l: lieu, k: catégorie, p: tarif confirmé, x: info, conf: à confirmer
+const EV = [
+ {d:"2026-11-04",h:"10h30",t:"Les Racontines (4–8 ans)",c:"Saint-Pol-de-Léon",l:"Médiathèque Keroulas",k:"enfants",p:"Gratuit"},
+ {d:"2026-11-04",h:"14h",f:"17h",t:"Atelier de dessins brodés avec Liz Hascoët",c:"Plouénan",l:"Médiathèque",k:"culture",p:"Gratuit",x:"Sur inscription, dès 12 ans · 02 98 69 51 47"},
+ {d:"2026-11-04",h:"17h30",t:"Spectacle mimé « Elle a marché sur la lune »",c:"Saint-Pol-de-Léon",l:"Médiathèque Keroulas",k:"enfants",p:"Gratuit"},
+ {d:"2026-11-05",h:"9h30",t:"Bébés lecteurs (0–3 ans)",c:"Saint-Pol-de-Léon",l:"Médiathèque Keroulas",k:"enfants",p:"Gratuit",x:"Sur inscription"},
+ {d:"2026-11-05",h:"18h30",t:"Atelier de création « livre-objet »",c:"Plougoulm",l:"Médiathèque",k:"enfants",p:"Gratuit",x:"Dès 8 ans, 10 places · 02 98 29 81 14"},
+ {d:"2026-11-05",h:"19h",t:"Coups de cœur de l'automne des libraires",c:"Saint-Pol-de-Léon",l:"Livres in Room",k:"culture",p:"Gratuit"},
+ {d:"2026-11-05",h:"20h",t:"Club de lecture",c:"Mespaul",l:"Médiathèque",k:"culture",p:"Gratuit"},
+ {d:"2026-11-06",h:"20h",t:"Tennis de table : Carantec TT – ASC Guiclan",c:"Carantec",l:"Salle du Menneyer",k:"sport",p:"Entrée libre"},
+ {d:"2026-11-07",h:"10h",t:"Bébés lecteurs (0–3 ans)",c:"Plougoulm",l:"Médiathèque Ty Koulm",k:"enfants",p:"Gratuit"},
+ {d:"2026-11-07",h:"10h30",t:"Atelier de danse contemporaine (Syrinx)",c:"Roscoff",l:"Espace Mathurin Méheut",k:"musique",p:"30 € la session"},
+ {d:"2026-11-07",h:"20h",t:"Théâtre : Mission Florimont",c:"Saint-Pol-de-Léon",l:"TST, rue de la Rive",k:"culture",p:"10 € · gratuit -12 ans"},
+ {d:"2026-11-07",h:"20h30",t:"Concert : Frazey Ford (folk-soul)",c:"Saint-Martin-des-Champs",l:"Le Roudour",k:"musique"},
+ {d:"2026-11-07",h:"20h30",t:"Verity (VOST)",c:"Carantec",l:"Cinéma L'Étoile",k:"cine",p:"7,50 € · réduit 5 €"},
+ {d:"2026-11-07",h:"20h45",t:"Handball : TCHB (Prénationale F) – Ploudiry Sizun",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",x:"Buvette sur place"},
+ {d:"2026-11-08",h:"9h",f:"17h",t:"Foire aux puces des p'tites canailles",c:"Saint-Pol-de-Léon",l:"Salle Isidore-Daniélou",k:"fete",p:"1,50 € · gratuit -12 ans"},
+ {d:"2026-11-08",h:"10h",f:"13h",t:"Rassemblement de voitures anciennes « Les rencontres de Kérisnel »",c:"Saint-Pol-de-Léon",l:"Parking de Kerisnel",k:"fete",p:"Gratuit"},
+ {d:"2026-11-08",h:"10h30",t:"Atelier de danse contemporaine (Syrinx)",c:"Roscoff",l:"Espace Mathurin Méheut",k:"musique",p:"30 € la session"},
+ {d:"2026-11-08",h:"12h30",t:"Semi-marathon Saint-Pol – Morlaix (+ 10 km Taulé-Morlaix à 13h50, semi à 14h30)",x:"Inscriptions complètes, venez encourager les coureurs !",c:"Saint-Pol-de-Léon",l:"Départ centre-ville",k:"sport"},
+ {d:"2026-11-08",h:"13h",t:"Foot : Carantec-Henvic B – Plougonven C",c:"Carantec",l:"Stade Jean-Madec",k:"sport"},
+ {d:"2026-11-08",h:"14h30",t:"Thé dansant du Comité des fêtes",c:"Santec",l:"Salle polyvalente",k:"musique",p:"10 € (boisson + pâtisserie)"},
+ {d:"2026-11-08",h:"15h",t:"Foot : Carantec-Henvic A – Santec",c:"Carantec",l:"Stade Jean-Madec",k:"sport"},
+ {d:"2026-11-08",h:"15h",t:"Chorales : Zélés du Vocal et Power of Gospel",c:"Plouénan",l:"Salle du Cristal",k:"musique",p:"8 €"},
+ {d:"2026-11-08",h:"15h",t:"Visite de la bibliothèque patrimoniale de la Station biologique",c:"Roscoff",l:"Place Georges Teissier",k:"culture",p:"Gratuit",x:"Sur inscription · 02 98 29 31 14"},
+ {d:"2026-11-08",h:"16h45",t:"Ballet au cinéma : Roméo et Juliette (Opéra de Paris)",c:"Saint-Pol-de-Léon",l:"Cinéma Majestic",k:"cine"},
+ {d:"2026-11-08",h:"17h",t:"Notre salut (VF)",c:"Carantec",l:"Cinéma L'Étoile",k:"cine",p:"7,50 € · réduit 5 €"},
+ {d:"2026-11-10",h:"10h",t:"Bébés lecteurs (0–3 ans)",c:"Plougoulm",l:"Médiathèque Ty Koulm",k:"enfants",p:"Gratuit"},
+ {d:"2026-11-10",h:"20h30",t:"Les Misérables (VF)",c:"Carantec",l:"Cinéma L'Étoile",k:"cine",p:"7,50 € · réduit 5 €"},
+ {d:"2026-11-10",h:"20h30",t:"Avant-première : Ceux qui tiennent la laisse",c:"Morlaix",l:"Cinéma La Salamandre",k:"cine"},
+ {d:"2026-11-11",h:"20h30",t:"Justin le Juste (VF)",c:"Carantec",l:"Cinéma L'Étoile",k:"cine",p:"7,50 € · réduit 5 €",conf:1},
+ {d:"2026-11-12",h:"14h30",t:"Une femme aujourd'hui (VF)",c:"Carantec",l:"Cinéma L'Étoile",k:"cine",p:"Séance à 4 €",conf:1},
+ {d:"2026-11-12",h:"18h30",t:"Animation « Argent et climat » (Le Buzuk)",c:"Saint-Pol-de-Léon",l:"Livres in Room",k:"culture",p:"Gratuit",x:"Sur réservation · 02 98 69 28 41"},
+ {d:"2026-11-12",h:"20h30",t:"Low Expectations (VOST)",c:"Carantec",l:"Cinéma L'Étoile",k:"cine",p:"7,50 € · réduit 5 €",conf:1},
+ {d:"2026-11-13",h:"9h30",t:"Bébés lecteurs : la maison",c:"Mespaul",l:"Médiathèque",k:"enfants",p:"Gratuit",x:"Réservation obligatoire · 02 98 61 59 79"},
+ {d:"2026-11-13",h:"18h",t:"Conférence : Picasso, Guernica (Christine de Langle)",c:"Roscoff",l:"Espace Mathurin Méheut",k:"culture",p:"10 € · adhérents 5 €"},
+ {d:"2026-11-13",h:"20h30",t:"Minotaure (VOST)",c:"Carantec",l:"Cinéma L'Étoile",k:"cine",p:"7,50 € · réduit 5 €",conf:1},
+ {d:"2026-11-14",h:"10h30",t:"Dédicace de Gérard Chevalier « Ouvrir la porte au chat »",c:"Saint-Pol-de-Léon",l:"Livres in Room",k:"culture",p:"Gratuit"},
+ {d:"2026-11-14",h:"11h",t:"Rencontre : faune marine et algues de la baie de Morlaix",c:"Roscoff",l:"Médiathèque",k:"nature",p:"Gratuit",x:"Sur inscription · 02 98 24 43 25"},
+ {d:"2026-11-14",h:"11h",f:"21h",t:"Marché de Noël de l'Hôtel d'Angleterre",c:"Roscoff",l:"28 rue Albert de Mun",k:"fete",p:"Gratuit",x:"Créateurs, ateliers, Père Noël, concert le samedi"},
+ {d:"2026-11-14",h:"13h30",t:"Atelier « acidification » avec Les Petits Débrouillards",c:"Plouénan",l:"Médiathèque",k:"enfants",p:"Gratuit"},
+ {d:"2026-11-14",h:"19h",t:"Boom 80's (association Marco N)",c:"Saint-Pol-de-Léon",l:"Salle Michel-Colombe",k:"musique",x:"Repas sur réservation, tombola"},
+ {d:"2026-11-15",h:"8h",f:"16h",t:"Foire aux puces de l'APE Charles-Perrault",c:"Plougoulm",l:"Salle omnisports",k:"fete",p:"1,50 € · gratuit -12 ans"},
+ {d:"2026-11-15",h:"11h",f:"18h",t:"Marché de Noël de l'Hôtel d'Angleterre",c:"Roscoff",l:"28 rue Albert de Mun",k:"fete",p:"Gratuit"},
+ {d:"2026-11-15",h:"15h15",t:"Avant-première : Wildwood, la prophétie de la forêt",c:"Morlaix",l:"Cinéma La Salamandre",k:"cine"},
+ {d:"2026-11-18",h:"15h",t:"Atelier d'écriture : les contes",c:"Saint-Pol-de-Léon",l:"Médiathèque Keroulas",k:"culture",p:"Gratuit",x:"Lycéens et adultes, sur inscription"},
+ {d:"2026-11-19",h:"14h30",t:"Cercle des Voyageurs : « Le Mékong »",c:"Roscoff",l:"Cinéma Sainte-Barbe",k:"culture",p:"7,50 € · gratuit -12 ans"},
+ {d:"2026-11-21",h:"14h",t:"Atelier ludique sur les sciences (dès 6 ans)",c:"Saint-Pol-de-Léon",l:"Médiathèque Keroulas",k:"enfants",p:"Gratuit",x:"Sur inscription"},
+ {d:"2026-11-21",h:"14h30",t:"Rencontre : la petite roussette, requin de nos côtes",c:"Roscoff",l:"Médiathèque",k:"nature",p:"Gratuit"},
+ {d:"2026-11-21",h:"16h",t:"Concours de soupes",c:"Roscoff",l:"Espace Mathurin Méheut",k:"fete",p:"Gratuit"},
+ {d:"2026-11-21",h:"20h30",t:"Théâtre : Un week-end chargé",c:"Saint-Pol-de-Léon",l:"TST, rue de la Rive",k:"culture",p:"31 € · abonné 21 €"},
+ {d:"2026-11-22",h:"8h30",f:"17h",t:"Foire aux puces de l'AC Léonarde",c:"Saint-Pol-de-Léon",l:"Salle Isidore-Daniélou",k:"fete",p:"1,50 € · gratuit -12 ans"},
+ {d:"2026-11-22",h:"10h",t:"Atelier volcanique (dès 5 ans)",c:"Plougoulm",l:"Médiathèque Ty Koulm",k:"enfants",p:"Gratuit",x:"Sur inscription"},
+ {d:"2026-11-23",h:"14h30",t:"Conférence : l'innovation dans les chantiers navals de Bretagne Nord",c:"Saint-Pol-de-Léon",l:"Espace des Minimes",k:"culture",p:"3 €"},
+ {d:"2026-11-24",h:"20h",t:"Spectacle « Faites des enfants ! » (parentalité)",c:"Morlaix",l:"Langolvas",k:"culture",p:"Gratuit",x:"Réservation obligatoire sur HelloAsso"},
+ {d:"2026-11-25",h:"10h30",t:"Chouette des histoires sur les sciences !",c:"Plouénan",l:"Médiathèque",k:"enfants",p:"Gratuit"},
+ {d:"2026-11-27",h:"18h30",t:"Rencontre avec l'écrivain Pierre Adrian",c:"Saint-Pol-de-Léon",l:"Médiathèque Keroulas",k:"culture",p:"Gratuit"},
+ {d:"2026-11-27",h:"19h",t:"Libres en littérature : rencontre avec Léa Chamboncel",c:"Saint-Pol-de-Léon",l:"Livres in Room",k:"culture",p:"Gratuit"},
+ {d:"2026-11-28",h:"10h30",t:"Lectures aux tout-petits scientifiques",c:"Plouénan",l:"Médiathèque",k:"enfants",p:"Gratuit"},
+ {d:"2026-11-29",h:"10h",f:"18h",t:"Marché de Noël de l'école Saint-Joseph",c:"Carantec",l:"Kelenn",k:"fete",p:"1,50 € dès 12 ans (boisson chaude offerte)",x:"Plus de 60 exposants, restauration, tombola, Père Noël"},
+ {d:"2026-12-02",h:"9h30",t:"Bébés lecteurs (moins de 3 ans)",c:"Carantec",l:"Médiathèque",k:"enfants"},
+ {d:"2026-11-08",h:"10h",f:"18h",t:"Expo-vente de la maison des livres",c:"Henvic",l:"Salle Ker-an-Oll",k:"fete",p:"Entrée libre"},
+ {d:"2026-11-08",h:"9h",f:"17h",t:"Bourse aux jouets des Roz'Elles",c:"Pleyber-Christ",l:"Salle des fêtes",k:"fete",p:"1,50 €"},
+ {d:"2026-11-08",h:"15h",t:"Concert gospel et pop",c:"Sainte-Sève",l:"Maison des associations",k:"musique",p:"Au chapeau"},
+ {d:"2026-11-08",h:"16h30",t:"Concert « Celtic Suite »",c:"Plougasnou",l:"Église Saint-Pierre",k:"musique",p:"10 € · réduit 5 € · gratuit -18 ans"},
+ {d:"2026-11-08",h:"16h30",t:"Conférence « Subir ou agir » de Francis Karolewicz",c:"Locquénolé",l:"Salle du Préau",k:"culture",p:"Entrée libre"},
+ {d:"2026-11-08",h:"18h",t:"Soirée-concert de Walter Weitz : les relations franco-allemandes en chansons",c:"Morlaix",l:"Bar des Deux Rivières",k:"musique",p:"Gratuit",x:"50 ans du jumelage Pays de Morlaix – Würselen"},
+ {d:"2026-11-09",h:"14h",t:"Kafe Brezhoneg : causerie en breton",c:"Plougoulm",l:"Médiathèque",k:"culture"},
+ {d:"2026-11-09",h:"18h",t:"Rencontre avec l'écrivain Michel Jean",c:"Morlaix",l:"Librairie Dialogues",k:"culture",p:"Entrée libre"},
+ {d:"2026-11-10",h:"10h",t:"Le Petit-déj' de La Virgule",c:"Morlaix",l:"La Virgule, rue de Paris",k:"culture",p:"6 €",x:"Sur réservation · 02 98 19 19 09"},
+ {d:"2026-11-10",h:"18h30",t:"La Parenthèse du Musée : Jeanne Bucher, galeriste d'avant-garde",c:"Morlaix",l:"La Virgule, rue de Paris",k:"culture",p:"Gratuit",x:"Sur réservation · 02 98 19 19 09"},
+ {d:"2026-11-10",h:"19h",t:"Théâtre : « Quatre mains » d'Alexandre Koutchevsky",c:"Morlaix",l:"Théâtre du Pays de Morlaix",k:"culture",p:"22 € · jeune 12 € · enfant 6 €",x:"Billetterie : 02 98 15 22 77"},
+ {d:"2026-11-12",h:"20h",t:"Théâtre : « Quatre mains » d'Alexandre Koutchevsky",c:"Morlaix",l:"Théâtre du Pays de Morlaix",k:"culture",p:"22 € · jeune 12 € · enfant 6 €",x:"Billetterie : 02 98 15 22 77"},
+ {d:"2026-11-13",h:"10h30",t:"Bébés lecteurs",c:"Morlaix",l:"Bibliothèque de la Boissière",k:"enfants",p:"Gratuit",x:"02 98 62 09 14"},
+ {d:"2026-11-13",h:"20h",t:"Animation « Enquête paranormale »",c:"Plougoulm",l:"Médiathèque Ty Koulm",k:"enfants",x:"Sur inscription"},
+ {d:"2026-11-14",h:"10h",t:"Atelier créatif parent-enfant",c:"Plougasnou",l:"Médiathèque",k:"enfants",p:"Gratuit",x:"Sur inscription · 02 98 67 31 26"},
+ {d:"2026-11-14",h:"10h30",t:"Bébés lecteurs",c:"Morlaix",l:"Médiathèque Les Ailes du temps",k:"enfants",p:"Gratuit",x:"02 98 15 20 60"},
+ {d:"2026-11-14",h:"13h30",f:"17h",t:"Jeux à la carte : après-midi jeux de société",c:"Morlaix",l:"Médiathèque Les Ailes du temps",k:"enfants",p:"Gratuit"},
+ {d:"2026-11-14",h:"14h",t:"Grande dictée du Téléthon",c:"Saint-Martin-des-Champs",l:"Pôle culturel du Roudour",k:"culture",p:"Adulte 6 € · jeune 1 €"},
+ {d:"2026-11-14",h:"18h30",t:"Soirée quiz « La Bataille des cerveaux »",c:"Lanmeur",l:"",k:"fete",x:"Sur inscription"},
+ {d:"2026-11-14",h:"20h",t:"Gala de catch",c:"Plouénan",l:"Salle Le Cristal",k:"sport",p:"15 € · -12 ans 12 €"},
+ {d:"2026-11-14",h:"20h",t:"Concert violon-piano : Gandhi Saad et Yuiko Hasegawa",c:"Saint-Jean-du-Doigt",l:"",k:"musique"},
+ {d:"2026-11-15",h:"8h30",f:"18h",t:"Tournoi de badminton",c:"Taulé",l:"Salle Steredenn",k:"sport",p:"1 tableau 5 € · 2 tableaux 8 €",x:"Sur inscription · 06 52 94 02 72"},
+ {d:"2026-11-15",h:"10h30",f:"12h30",t:"Foire aux 4Z : échange sans argent",c:"Plouezoc'h",l:"Salle omnisports",k:"fete",x:"Association En Vrac à l'Ouest · 06 65 16 05 82"},
+ {d:"2026-11-15",h:"16h",t:"Deux duos en concert (au profit de la Ligue contre le cancer)",c:"Saint-Pol-de-Léon",l:"Espace des Minimes",k:"musique",p:"Libre participation"},
+ {d:"2026-11-15",h:"16h",t:"Théâtre en breton « Blaz an Douar, le goût de la terre »",c:"Saint-Martin-des-Champs",l:"Le Roudour",k:"culture",p:"16 € · gratuit -15 ans"},
+ {d:"2026-11-15",h:"16h",t:"Session de musique irlandaise",c:"Plougasnou",l:"Local PED, face à la mairie",k:"musique",p:"Gratuit"},
+ {d:"2026-11-15",h:"16h30",t:"Concert violon-piano : Gandhi Saad et Yuiko Hasegawa",c:"Saint-Jean-du-Doigt",l:"",k:"musique"},
+ {d:"2026-11-17",h:"18h",t:"Atelier floral",c:"Morlaix",l:"La Virgule, rue de Paris",k:"culture",p:"Gratuit",x:"Sur inscription · 02 98 19 19 09"},
+ {d:"2026-11-17",h:"20h",t:"Causerie en breton",c:"Plouezoc'h",l:"Salle polyvalente",k:"culture",p:"Gratuit"},
+ {d:"2026-11-18",h:"10h30",t:"Animation « Pour les tout-petits aussi ! »",c:"Morlaix",l:"La Virgule, rue de Paris",k:"enfants",p:"Gratuit",x:"Sur inscription"},
+ {d:"2026-11-20",h:"17h",t:"Atelier : fabrique ton marque-page au crochet",c:"Plougasnou",l:"Médiathèque",k:"culture",p:"Gratuit",x:"Sur inscription · 02 98 67 31 26"},
+ {d:"2026-11-21",h:"10h",f:"18h",t:"Salon du livre jeunesse du pays de Morlaix",c:"Saint-Martin-des-Champs",l:"Le Roudour",k:"enfants",p:"Entrée libre"},
+ {d:"2026-11-22",h:"10h",f:"18h",t:"Salon du livre jeunesse du pays de Morlaix",c:"Saint-Martin-des-Champs",l:"Le Roudour",k:"enfants",p:"Entrée libre"},
+ {d:"2026-11-22",h:"17h",t:"Ciné-club : « L'Affaire Bojarski »",c:"Plougasnou",l:"Salle municipale, rue de Primel",k:"cine",p:"5 € · gratuit adhérents et -18 ans"},
+ {d:"2026-11-24",h:"18h30",t:"Conférence sur le boulier chinois",c:"Morlaix",l:"La Virgule, rue de Paris",k:"culture",p:"Gratuit",x:"Sur inscription"},
+ {d:"2026-11-24",h:"20h",t:"Concert « Les classiques viennois » par l'Ensemble Matheus",c:"Morlaix",l:"Église Saint-Mathieu",k:"musique",p:"18 € · réduit 13 € · gratuit -15 ans"},
+ {d:"2026-11-25",h:"10h30",t:"Animation famille « Fais ton cirque »",c:"Morlaix",l:"La Virgule, rue de Paris",k:"enfants",p:"Gratuit",x:"Sur inscription"},
+ {d:"2026-11-27",h:"15h",t:"Atelier d'écriture",c:"Plougasnou",l:"Face à la mairie",k:"culture",p:"Gratuit"},
+ {d:"2026-11-28",h:"19h",t:"Concert violon et piano : œuvres incontournables et pépites oubliées",c:"Saint-Jean-du-Doigt",l:"",k:"musique"},
+ {d:"2026-11-29",h:"9h",f:"13h",t:"Gratiferia : marché 100 % gratuit",c:"Locquénolé",l:"Salle des fêtes",k:"fete",p:"Entrée libre"},
+ {d:"2026-11-29",h:"10h",f:"18h",t:"Marché de Noël des artisans et créateurs",c:"Garlan",l:"",k:"fete"},
+ {d:"2026-11-29",h:"12h",t:"Kig ha farz de l'école Sainte-Juvelte",c:"Henvic",l:"Salle Marie-Jacq",k:"fete",p:"14 € · 6–12 ans 7 €"},
+ {d:"2026-11-29",h:"16h30",t:"Concert violon et piano : œuvres incontournables et pépites oubliées",c:"Saint-Jean-du-Doigt",l:"",k:"musique"},
+ {d:"2026-11-29",h:"17h",t:"Ciné-club : « Makala »",c:"Plougasnou",l:"Salle municipale, rue de Primel",k:"cine",p:"5 € · gratuit adhérents et -18 ans"},
+ {d:"2026-12-01",h:"18h30",t:"La Virgule Verte : accueillir la biodiversité chez soi",c:"Morlaix",l:"La Virgule, rue de Paris",k:"nature",p:"Gratuit"},
+ {d:"2026-12-01",h:"20h",t:"Causerie en breton",c:"Plouezoc'h",l:"Salle polyvalente",k:"culture",p:"Gratuit"},
+ {d:"2026-12-02",h:"20h30",t:"Conférence « Trafic de biens culturels, Aglae fait parler la matière »",c:"Morlaix",l:"CCI, aérodrome",k:"culture",p:"Gratuit"},
+ {d:"2026-12-05",h:"14h",f:"19h",t:"Grand marché de Noël d'Arts Ty Lanmeur",c:"Lanmeur",l:"",k:"fete"},
+ {d:"2026-12-05",h:"20h",t:"Récital de Florent Albrecht « Schubert et la fête ! »",c:"Saint-Jean-du-Doigt",l:"",k:"musique"},
+ {d:"2026-12-05",h:"20h30",t:"Concert de Danakil",c:"Saint-Martin-des-Champs",l:"Le Roudour",k:"musique",p:"29 € · réduit 26 €"},
+ {d:"2026-12-06",h:"10h",f:"17h30",t:"Visite gratuite du Cairn de Barnenez (1er dimanche du mois)",c:"Plouezoc'h",l:"Cairn de Barnenez",k:"nature",p:"Gratuit"},
+ {d:"2026-12-06",h:"10h",f:"18h",t:"Grand marché de Noël d'Arts Ty Lanmeur",c:"Lanmeur",l:"",k:"fete"},
+ {d:"2026-12-06",h:"18h",t:"Récital de Florent Albrecht « Schubert et la fête ! »",c:"Saint-Jean-du-Doigt",l:"",k:"musique"},
+ {d:"2026-12-08",h:"10h",t:"Bébés lecteurs",c:"Plougoulm",l:"Médiathèque Ty Koulm",k:"enfants",x:"Sur inscription"},
+ {d:"2026-12-12",h:"10h",t:"Bébés lecteurs",c:"Plougoulm",l:"Médiathèque Ty Koulm",k:"enfants",x:"Sur inscription"},
+ {d:"2026-12-12",h:"20h30",t:"Concert « Renan Luce joue Repenti »",c:"Morlaix",l:"Le Sew, quai de Léon",k:"musique",p:"De 27 à 37 €"},
+ {d:"2026-12-13",h:"16h45",t:"Opéra-ballet au cinéma : Le Lac des cygnes",c:"Saint-Pol-de-Léon",l:"Cinéma Majestic",k:"cine",p:"15 €"}
+];
+// Découverte pêche du bar (plusieurs dates)
+["2026-11-06","2026-11-17","2026-11-19","2026-11-23","2026-11-25","2026-11-27"].forEach(d=>EV.push({d,h:"9h30",f:"13h",t:"Découverte de la pêche sportive du bar (Pesketa)",c:"Baie de Morlaix",l:"RDV selon météo",k:"nature",p:"100 à 180 €",x:"Sur réservation · 07 87 07 68 01"}));
+
+// Rendez-vous hebdomadaires — w: jour (0=dim … 6=sam), vac: arrêt pendant les vacances scolaires
+const WEEKLY = [
+ {w:2,h:"8h",f:"13h",t:"Marché",c:"Saint-Pol-de-Léon",l:"Places de Guébriant et du Parvis",k:"fete"},
+ {w:2,h:"8h",f:"13h",t:"Marché",c:"Plougasnou",l:"Place de l'Église",k:"fete"},
+ {w:3,h:"8h",f:"13h",t:"Marché",c:"Roscoff",l:"Quai d'Auxerre",k:"fete"},
+ {w:3,h:"15h",t:"Kaoz tricot",c:"Saint-Martin-des-Champs",l:"Médiathèque du Roudour",k:"culture",p:"Gratuit"},
+ {w:4,h:"18h30",f:"20h35",t:"Cours de tango argentin (Tango à la mer)",c:"Roscoff",l:"Espace Mathurin Méheut",k:"musique",p:"6 € le cours"},
+ {w:5,h:"10h",f:"11h30",t:"Visite de la maison des semences paysannes (Kaol Kozh)",c:"Plougoulm",l:"Pen Ar Vur",k:"nature",p:"Gratuit",x:"Sur réservation, jusqu'au 18 décembre"},
+ {w:5,h:"17h",f:"19h",t:"Marché de producteurs",c:"Plouezoc'h",l:"Ferme de Troglo, Kerfénéfas",k:"fete"},
+ {w:0,h:"8h30",f:"13h30",t:"Marché",c:"Saint-Martin-des-Champs",l:"Devant la mairie",k:"fete"},
+ {w:6,h:"10h",f:"12h",t:"Café Bricole : initiation autour du fil (jusqu'au 19 déc.)",c:"Plougasnou",l:"Atelier Sabine Grangé",k:"culture",p:"25 € (projet perso)"},
+ {w:4,h:"8h",f:"13h",t:"Marché de Carantec",c:"Carantec",l:"Centre-bourg",k:"fete"},
+ {w:6,h:"Matin",t:"Grand marché de Morlaix (alimentaire jusqu'à 13h30, place Allende)",c:"Morlaix",l:"Places Allende et des Otages",k:"fete"},
+ {w:1,h:"14h",t:"Boule plombée",c:"Carantec",l:"Place de l'Étoile",k:"sport"},
+ {w:3,h:"14h",t:"Boule plombée",c:"Carantec",l:"Place de l'Étoile",k:"sport"},
+ {w:5,h:"14h",t:"Boule plombée",c:"Carantec",l:"Place de l'Étoile",k:"sport"},
+ {w:1,h:"9h",t:"Gym Pour Tous : step, renforcement (10h, 11h15), gym douce (14h)",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
+ {w:2,h:"11h",t:"Gym Pour Tous : pilates (11h), stretching (17h30)",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
+ {w:2,h:"12h30",t:"Hatha Flow avec Gaëlle Naturo Yoga",c:"Carantec",l:"Île aux Dames",k:"sport"},
+ {w:2,h:"20h30",t:"Atelier de danse bretonne (Ar Boutou Nevez)",c:"Roscoff",l:"Espace Mathurin Méheut",k:"musique",p:"Gratuit"},
+ {w:3,h:"17h",t:"Gym Pour Tous : yoga (17h), stretching (18h45)",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
+ {w:4,h:"9h",t:"Gym Pour Tous : renforcement (9h), gym hommes (10h15), pilates (17h)",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
+ {w:4,h:"20h",f:"22h",t:"Tennis de table, entraînement tous niveaux",c:"Carantec",l:"Salle du Menneyer",k:"sport"},
+ {w:5,h:"10h30",t:"Gym Pour Tous : stretching (10h30, 11h30), pilates (16h45, 18h)",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
+ {w:6,h:"10h15",t:"Gym Pour Tous : yoga",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
+ {w:0,h:"9h15",t:"Aviron de mer",c:"Carantec",l:"Base nautique du Kelenn",k:"sport"},
+ {w:0,h:"10h",f:"12h",t:"Tennis de table, entraînement tous niveaux",c:"Carantec",l:"Salle du Menneyer",k:"sport"}
+];
+
+// Expositions et animations sur une période
+const PERIODS = [
+ {from:"2026-11-03",to:"2026-11-28",t:"Festisol : « Le vivant, la justice et nous »",c:"Morlaix",l:"La Virgule, rue de Paris",k:"culture",p:"Gratuit"},
+ {from:"2026-10-03",to:"2027-01-09",t:"« Biodiversité fabulatoire » de Catherine Voison",c:"Morlaix",l:"La Virgule, rue de Paris",k:"culture",p:"Gratuit",x:"300 chimères mi-animales, mi-végétales. Mar.–sam. 12h–18h30."},
+ {from:"2026-05-08",to:"2027-01-14",t:"Réalité virtuelle : « Aboukir Bay », la biodiversité marine",c:"Morlaix",l:"La Virgule, rue de Paris",k:"nature",p:"Gratuit"},
+ {from:"2026-11-06",to:"2026-12-24",t:"Exposition « Rivages » de Nathalie Leverger",c:"Morlaix",l:"Atelier-galerie Claire Beillard, rue Haute",k:"culture",p:"Gratuit"},
+ {from:"2026-11-04",to:"2026-11-28",t:"Exposition « Nu »",c:"Morlaix",l:"Galerie Couleurs de Arts, rue au Fil",k:"culture",p:"Entrée libre"},
+ {from:"2026-10-28",to:"2026-11-14",t:"Hommage au poète Mahmoud Darwich",c:"Morlaix",l:"Les Ateliers, Grand-Rue",k:"culture",p:"Entrée libre"},
+ {from:"2026-10-16",to:"2026-11-15",t:"Peintures d'Hervé Château",c:"Morlaix",l:"Monoprix, rue d'Aiguillon",k:"culture",p:"Entrée libre"},
+ {from:"2026-09-13",to:"2026-11-28",t:"« Nous prendrons la mer avec nous »",c:"Plougasnou",l:"Café Marylène",k:"culture",p:"Gratuit"},
+ {from:"2026-11-22",to:"2026-12-20",t:"Exposition « La Nef des songes »",c:"Pleyber-Christ",l:"Salle Anne de Bretagne",k:"culture",p:"Gratuit"},
+ {from:"2026-10-01",to:"2027-03-31",t:"« Il était une fois Barnenez »",c:"Plouezoc'h",l:"Cairn de Barnenez",k:"culture",x:"Mar.–dim. 10h–12h30 et 14h–17h30. Visite gratuite le 1er dimanche du mois."},
+ {from:"2026-10-02",to:"2026-11-25",t:"Les découvreuses anonymes",c:"Saint-Pol-de-Léon",l:"Médiathèque Keroulas",k:"culture",p:"Gratuit",x:"9 portraits de femmes scientifiques méconnues."},
+ {from:"2026-10-06",to:"2026-11-07",t:"Liz Hascoët : l'encre et la matière au service du vivant",c:"Plouénan",l:"Médiathèque",k:"culture",p:"Gratuit"},
+ {from:"2026-10-17",to:"2026-11-29",t:"Len Ho : paysages abstraits",c:"Saint-Pol-de-Léon",l:"Livres in Room",k:"culture",p:"Gratuit"},
+ {from:"2026-10-24",to:"2026-11-29",t:"Jean Vaugeois : Possibilités de la matière",c:"Saint-Pol-de-Léon",l:"La Préb'",k:"culture",p:"Gratuit"},
+ {from:"2026-10-28",to:"2026-11-15",t:"Nouvelles acquisitions de l'Artothèque des Moyens du Bord",c:"Saint-Martin-des-Champs",l:"Le Roudour, 14h–18h",k:"culture",p:"Gratuit"},
+ {from:"2026-10-28",to:"2026-12-30",t:"Maison Pénanault : « L'habitat dans tous ses états »",c:"Morlaix",l:"Maison Pénanault",k:"culture",p:"4 €",x:"Visites commentées et exposition sur le XXe siècle en pays de Morlaix."},
+ {from:"2026-10-29",to:"2026-11-18",t:"Concours de dessin « Gourmandises » (0–6, 7–12, 13 ans et +)",c:"Saint-Pol-de-Léon",l:"Livres in Room",k:"enfants",p:"Gratuit"},
+ {from:"2026-11-03",to:"2026-11-28",t:"Acidification des mers et des océans",c:"Plouénan",l:"Médiathèque",k:"nature",p:"Gratuit",x:"Avec les Petits Débrouillards et la Station biologique de Roscoff."},
+ {from:"2026-11-03",to:"2026-11-28",t:"Écloserie de roussettes",c:"Roscoff",l:"Médiathèque",k:"nature",p:"Gratuit",x:"Découvrir le cycle de vie du petit requin de nos côtes."},
+ {from:"2026-11-03",to:"2026-11-29",t:"Exposition « Savant fou »",c:"Plougoulm",l:"Médiathèque Ty Koulm",k:"enfants",p:"Gratuit"}
+];
+
+// Toute l'année
+const PERMA = [
+ {t:"Musée des vieilles soupapes",c:"Plougasnou",l:"Rond-point du 19-Mars",when:"Lundi, mercredi, vendredi · 14h–18h",x:"5 €, gratuit moins de 10 ans."},
+ {t:"La p'tite ferme de Carole",c:"Pleyber-Christ",l:"Kerrivoal",when:"Du mardi au samedi · 14h30",x:"Visite et goûter : 9 € adulte, 7,50 € enfant."},
+ {t:"« Terres d'encres », peintures d'Anne Marrec",c:"Carantec",l:"Boulangerie-salon de thé Pouliquen, place de la Libération",when:"Tous les jours · 7h–18h",x:"Entrée libre. Les œuvres changent tous les 3 mois."},
+ {t:"Légende de Trains",c:"Lesneven (≈ 35 km)",l:"9 rue Médecin Général Le Berre",when:"Tous les jours sauf mardi",li:["Musée et train miniature : 14h30, 15h45, 17h (5 €)","Spectacle sons et lumières sur l'histoire du rail : mêmes horaires","Circuit slot car : mercredi et samedi 9h–12h (5 € les 2 min)"],x:"Contact : Renaud, 06 13 91 80 46"},
+ {t:"Happy Jungle, aire de jeux couverte 0–12 ans",c:"Saint-Martin-des-Champs",when:"Payant · horaires sur leur page",x:"Idéal les jours de pluie."},
+ {t:"Carantec Rando",c:"Carantec",when:"2 lundis par mois, de septembre à juin",x:"Marches d'environ 15 km, pique-nique tiré du sac. Contact : 06 15 48 02 74."},
+ {t:"Golf de la Baie de Morlaix",c:"Carantec",when:"Toute l'année",x:"Compétitions, animations et école de golf de l'association sportive."},
+ {t:"Location de courts de tennis",c:"Carantec",when:"Toute l'année (hors juillet-août)",x:"Tennis Club des Deux Baies, via l'office de tourisme : 02 98 67 00 43."}
+];
+
+// Restos : 7 paires lun→dim, chaque paire = midi/soir
+const RESTOS = [
+ {n:"Nicolas Carro",l:"Rue du Kélenn",h:"12h15 / 19h30",j:"00 00 11 11 11 11 11"},
+ {n:"La Marinière",l:"Port",h:"12h / 19h",j:"00 00 11 11 11 11 10"},
+ {n:"Le Cabestan",l:"Port",h:"12h / 18h",j:"00 11 11 00 11 11 11"},
+ {n:"La Table de Ty Pot",l:"Bourg",h:"12h / 19h",j:"00 11 11 11 11 11 10"},
+ {n:"Crêperie La Chaise du Curé",l:"Bourg",h:"12h / 19h",j:"10 00 00 11 11 11 11",spec:{"2026-11-11":"11"}},
+ {n:"Carantec Pizza",l:"Rue Albert Louppe",h:"18h–21h",j:"01 01 00 00 01 01 01"},
+ {n:"Stéphane Giraud · salon de thé",l:"Rue Pasteur",h:"7h–19h30 · sandwichs",j:"11 11 11 11 11 11 11"}
+];
+
+// Île Callot
+const CALLOT_RAW = `2026-11-01 02h25-05h53,14h59-18h38 56,51
+2026-11-02 03h59-06h41,16h33-19h48 47
+2026-11-03 05h36-07h58,17h56-21h21 47,48
+2026-11-04 06h40-09h39,18h53-22h44 52,56
+2026-11-05 07h24-11h02,19h39-23h48 61,66
+2026-11-06 08h04-12h05,20h20-24h00 71,75
+2026-11-07 00h00-00h39,08h42-12h56,20h59-24h00 78,81
+2026-11-08 00h00-01h22,09h18-13h39,21h36-24h00 83,84
+2026-11-09 00h00-01h59,09h54-14h17,22h12-24h00 84,84
+2026-11-10 00h00-02h32,10h28-14h50,22h47-24h00 83,82
+2026-11-11 00h00-03h02,11h03-15h21,23h23-24h00 80,77
+2026-11-12 00h00-03h29,11h39-15h50 74,71
+2026-11-13 00h01-03h54,12h18-16h16 67,63
+2026-11-14 00h42-04h16,13h02-16h40 58,54
+2026-11-15 01h32-04h36,13h55-17h04 49,45
+2026-11-16 02h39-04h52,15h04-17h29 41,38
+2026-11-17 16h34-18h02 35,34
+2026-11-18 17h49-19h22 35
+2026-11-19 18h28-21h11 37,41
+2026-11-20 07h03-09h38,19h02-22h36 46,51
+2026-11-21 07h30-11h01,19h39-23h42 57,64
+2026-11-22 08h04-12h06,20h18-24h00 70,76
+2026-11-23 00h00-00h38,08h41-13h02,20h59-24h00 81,86
+2026-11-24 00h00-01h28,09h21-13h53,21h43-24h00 90,93
+2026-11-25 00h00-02h15,10h04-14h43,22h28-24h00 96,97
+2026-11-26 00h00-03h01,10h49-15h31,23h17-24h00 97,96
+2026-11-27 00h00-03h46,11h38-16h19 94,90
+2026-11-28 00h10-04h30,12h32-17h07 86,82
+2026-11-29 01h08-05h15,13h33-17h55 76,71
+2026-11-30 02h13-06h01,14h40-18h46 66,62
+2026-12-01 03h26-06h51,15h55-19h41 58,55
+2026-12-02 04h42-07h48,17h10-20h43 53
+2026-12-03 05h53-08h56,18h18-21h49 52,53
+2026-12-04 06h52-10h08,19h13-22h53 54,57
+2026-12-05 07h41-11h15,20h01-23h50 59,62
+2026-12-06 08h24-12h14,20h43-24h00 64,66
+2026-12-07 00h00-00h40,09h03-13h03,21h22-24h00 69,70
+2026-12-08 00h00-01h23,09h40-13h47,21h59-24h00 72,73
+2026-12-09 00h00-02h02,10h15-14h26,22h34-24h00 74,74
+2026-12-10 00h00-02h37,10h49-15h02,23h09-24h00 74,73
+2026-12-11 00h00-03h10,11h24-15h35,23h45-24h00 72,71
+2026-12-12 00h00-03h41,12h00-16h07 69,67
+2026-12-13 00h22-04h11,12h38-16h38 65,63
+2026-12-14 01h02-04h40,13h19-17h09 60,57
+2026-12-15 01h46-05h10,14h05-17h42 55,52
+2026-12-16 02h39-05h42,14h59-18h19 49,47
+2026-12-17 03h41-06h20,16h01-19h05 45,44
+2026-12-18 04h50-07h12,17h06-20h07 44
+2026-12-19 05h54-08h28,18h08-21h25 45,48
+2026-12-20 06h46-09h56,19h02-22h43 51,55
+2026-12-21 07h33-11h18,19h53-23h54 61,66
+2026-12-22 08h19-12h30,20h42-24h00 72,77
+2026-12-23 00h00-00h58,09h05-13h34,21h31-24h00 83,87
+2026-12-24 00h00-01h56,09h52-14h32,22h20-24h00 91,95
+2026-12-25 00h00-02h50,10h40-15h27,23h10-24h00 97,99
+2026-12-26 00h00-03h41,11h31-16h19 99,98
+2026-12-27 00h01-04h30,12h22-17h07 96,93
+2026-12-28 00h52-05h16,13h15-17h52 89,84
+2026-12-29 01h46-05h59,14h11-18h34 78,73
+2026-12-30 02h43-06h39,15h10-19h12 67,61
+2026-12-31 03h45-07h18,16h17-19h50 55`;
+
+// Vacances scolaires (zone B) : Noël 2026
+const VACANCES = [["2026-12-19","2027-01-03"]];
+
+/* ===================== LOGIQUE ===================== */
+const TODAY = (()=>{const n=new Date();return n.getFullYear()+"-"+String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0")})();
+const $ = s=>document.querySelector(s);
+const JOURS = ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+const MC = ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."];
+const MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+const pd = s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+const iso = dt=>dt.getFullYear()+"-"+String(dt.getMonth()+1).padStart(2,"0")+"-"+String(dt.getDate()).padStart(2,"0");
+const hm = h=>{const m=/^(\d{1,2})h(\d{2})?/.exec(h||"");return m?(+m[1])*60+(+(m[2]||0)):h==="Matin"?480:720};
+const esc = s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const CALLOT = {};
+CALLOT_RAW.split("\n").forEach(line=>{
+  const [d,sl,co]=line.trim().split(" ");
+  CALLOT[d]={slots: sl==="AUCUN"?[]:sl.split(",").map(s=>s.replace("-"," → ").replace("24h00","minuit").replace(/^00h00/,"minuit")),coef:co};
+});
+
+let sel = TODAY, cat = null, onlyC = false;
+try{ const s=JSON.parse(localStorage.getItem("qfc")||"{}"); onlyC=!!s.onlyC; }catch(e){}
+$("#onlyC").checked = onlyC;
+
+function inVac(d){return VACANCES.some(([a,b])=>d>=a&&d<=b)}
+function eventsFor(d){
+  const dt=pd(d), w=dt.getDay();
+  const dated = EV.filter(e=>e.d===d).map(e=>({...e,type:"date"}));
+  const weekly = WEEKLY.filter(e=>e.w===w && !(e.vac&&inVac(d))).map(e=>({...e,type:"week"}));
+  return {dated, weekly};
+}
+function filt(list){return list.filter(e=>(!cat||e.k===cat)&&(!onlyC||e.c==="Carantec"))}
+
+function evHTML(e){
+  const C=CATS[e.k];
+  const time = e.h + (e.f?`<small>→ ${e.f}</small>`:"");
+  return `<div class="ev"><div class="t">${time}</div><div class="b">
+    <div class="ti">${esc(e.t)}</div>
+    <div class="pl">📍 ${esc(e.c)}${e.l?" · "+esc(e.l):""}</div>
+    <div class="meta"><span class="tag cat" style="background:${C.c}">${C.e} ${C.l}</span>
+      ${e.c==="Carantec"?'<span class="tag here">Carantec</span>':""}
+      ${e.p?`<span class="tag price">${esc(e.p)}</span>`:""}
+      ${e.conf?'<span class="tag conf">horaire à confirmer</span>':""}</div>
+    ${e.x?`<div class="x">${esc(e.x)}</div>`:""}
+  </div></div>`;
+}
+
+function buildStrip(){
+  const start=pd("2026-11-02"), end=pd("2026-12-31"); let h="";
+  for(let dt=new Date(start); dt<=end; dt.setDate(dt.getDate()+1)){
+    const d=iso(dt), n=EV.filter(e=>e.d===d).length;
+    const dots = n? "<i></i>".repeat(Math.min(3,Math.ceil(n/2))) : "";
+    h+=`<div class="d ${d===TODAY?"today":""} ${d<TODAY?"past":""} ${d===sel?"on":""}" data-d="${d}">
+      <div class="w">${JOURS[dt.getDay()].slice(0,3)}</div><div class="n">${dt.getDate()}</div><div class="m">${MC[dt.getMonth()]}</div><div class="dots">${dots}</div></div>`;
+  }
+  $("#strip").innerHTML=h;
+  $("#strip").querySelectorAll(".d").forEach(el=>el.onclick=()=>{sel=el.dataset.d;renderDay();buildStrip();});
+  const on=$("#strip .d.on"); if(on) on.scrollIntoView({inline:"center",block:"nearest"});
+}
+
+function buildCats(){
+  let h=`<button class="chip ${!cat?"on":""}" data-k="">Tout</button>`;
+  for(const k in CATS) h+=`<button class="chip ${cat===k?"on":""}" data-k="${k}">${CATS[k].e} ${CATS[k].l}</button>`;
+  $("#cats").innerHTML=h;
+  $("#cats").querySelectorAll(".chip").forEach(b=>b.onclick=()=>{cat=b.dataset.k||null;buildCats();renderDay();});
+}
+
+function renderDay(){
+  const dt=pd(sel);
+  const label = (sel===TODAY?"aujourd'hui, ":"") + JOURS[dt.getDay()]+" "+dt.getDate()+" "+MOIS[dt.getMonth()];
+  $("#dayTitle").textContent = label.charAt(0).toUpperCase()+label.slice(1);
+  // Callot
+  const c=CALLOT[sel];
+  if(c && !onlyC || c && onlyC){
+    $("#callotDay").innerHTML = `<div class="callot ${c.slots.length?"":"none"}"><img src="img/callot.jpg" alt="">
+      <div><b>Passage vers l'île Callot</b>
+      <div class="slots">${c.slots.length?c.slots.map(s=>`<span class="slot">${s}</span>`).join(""):'<span class="slot">Pas de passage (coefficient trop faible)</span>'}</div>
+      <small>Coefficient ${c.coef.replace(","," / ")} · horaires indicatifs, selon la météo</small></div></div>`;
+  } else $("#callotDay").innerHTML="";
+  // Événements
+  const {dated,weekly}=eventsFor(sel);
+  const periods = PERIODS.filter(p=>sel>=p.from&&sel<=p.to);
+  const D=filt(dated).sort((a,b)=>hm(a.h)-hm(b.h));
+  const W=filt(weekly).sort((a,b)=>hm(a.h)-hm(b.h));
+  const P=filt(periods);
+  let h="";
+  const blocks=[["Matin",0,720],["Après-midi",720,1080],["Soirée",1080,1500]];
+  if(D.length){
+    blocks.forEach(([n,a,b])=>{const l=D.filter(e=>hm(e.h)>=a&&hm(e.h)<b); if(l.length) h+=`<div class="group">${n}</div>`+l.map(evHTML).join("");});
+  } else {
+    h+=`<div class="empty">Pas d'événement ponctuel annoncé ce jour-là${cat||onlyC?" avec ces filtres":""}.<br>Regardez les rendez-vous réguliers et les expos ci-dessous 👇</div>`;
+  }
+  if(W.length) h+=`<div class="group">🔁 Comme chaque ${JOURS[dt.getDay()]}</div>`+W.map(evHTML).join("");
+  if(P.length) h+=`<div class="group">🎨 Expos et animations en cours</div>`+P.map(p=>evHTML({...p,h:"Jusqu'au",f:pd(p.to).getDate()+" "+MC[pd(p.to).getMonth()]})).join("");
+  $("#dayList").innerHTML=h;
+  const n=D.length; $("#dayCount").textContent = n? n+" événement"+(n>1?"s":"") : "";
+  // Restos
+  const idx=(dt.getDay()+6)%7;
+  $("#restos").innerHTML = RESTOS.map(r=>{
+    let p=r.j.split(" ")[idx]; if(r.spec&&r.spec[sel]) p=r.spec[sel];
+    const open=p!=="00";
+    return `<div class="r" style="${open?"":"opacity:.5"}"><b>${esc(r.n)}</b><span>${esc(r.l)} · ${esc(r.h)}</span>
+      <div class="o"><i class="${p[0]==="1"?"":"off"}">midi</i><i class="${p[1]==="1"?"":"off"}">soir</i></div></div>`;
+  }).join("");
+}
+
+function renderContinu(){
+  const P=PERIODS.filter(p=>p.to>=TODAY).sort((a,b)=>a.to.localeCompare(b.to));
+  const fmt=s=>{const d=pd(s);return d.getDate()+" "+MOIS[d.getMonth()]};
+  $("#expos").innerHTML=P.map(p=>`<div class="pc"><div class="ti">${CATS[p.k].e} ${esc(p.t)}</div>
+    <div class="pl" style="color:var(--ink2);font-size:13.5px;margin-top:2px">📍 ${esc(p.c)} · ${esc(p.l)}</div>
+    <span class="when">${p.from<=TODAY?"Jusqu'au "+fmt(p.to):"Du "+fmt(p.from)+" au "+fmt(p.to)}</span>
+    ${p.p?` <span class="tag price">${esc(p.p)}</span>`:""}
+    ${p.x?`<p>${esc(p.x)}</p>`:""}</div>`).join("");
+  $("#perma").innerHTML=PERMA.map(p=>`<div class="pc"><div class="ti">${esc(p.t)}</div>
+    <div style="color:var(--ink2);font-size:13.5px;margin-top:2px">📍 ${esc(p.c)}${p.l?" · "+esc(p.l):""}</div>
+    <span class="when">${esc(p.when)}</span>
+    ${p.li?"<ul>"+p.li.map(x=>"<li>"+esc(x)+"</li>").join("")+"</ul>":""}
+    ${p.x?`<p>${esc(p.x)}</p>`:""}</div>`).join("");
+}
+
+function renderWeek(){
+  const order=[1,2,3,4,5,6,0];
+  $("#week").innerHTML=order.map(w=>{
+    const l=WEEKLY.filter(e=>e.w===w).sort((a,b)=>hm(a.h)-hm(b.h));
+    return `<div class="wd"><h4>${JOURS[w].charAt(0).toUpperCase()+JOURS[w].slice(1)}</h4><ul>${
+      l.map(e=>`<li><b>${e.h}${e.f?"–"+e.f:""}</b> · ${esc(e.t)} <span style="color:var(--mute)">· ${esc(e.c)}</span>${e.vac?' <span class="tag" style="font-size:10.5px">hors vacances</span>':""}</li>`).join("")
+    }</ul></div>`;
+  }).join("");
+}
+
+function renderCallot(){
+  let h="";
+  Object.keys(CALLOT).filter(d=>d>=TODAY).forEach(d=>{
+    const dt=pd(d), c=CALLOT[d], we=dt.getDay()===0||dt.getDay()===6;
+    h+=`<tr class="${we?"we":""} ${d===TODAY?"today":""}"><td style="white-space:nowrap;text-transform:capitalize">${JOURS[dt.getDay()].slice(0,3)}. ${dt.getDate()} ${MC[dt.getMonth()]}</td>
+      <td>${c.slots.length?c.slots.join("<br>"):'<span style="color:var(--coral)">Pas de passage</span>'}</td><td class="c">coef. ${c.coef.replace(","," / ")}</td></tr>`;
+  });
+  $("#ctable").innerHTML=h;
+}
+
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===t));
+  document.querySelectorAll("main section").forEach(s=>s.classList.toggle("on",s.id===t.dataset.tab));
+  if(t.dataset.tab==="jour") buildStrip();
+  const top=document.querySelector(".tabs").offsetTop; if(window.scrollY>top) window.scrollTo({top});
+});
+$("#onlyC").onchange=e=>{onlyC=e.target.checked;try{localStorage.setItem("qfc",JSON.stringify({onlyC}))}catch(_){}renderDay();};
+
+buildCats(); buildStrip(); renderDay(); renderContinu(); renderWeek(); renderCallot();
+</script>
+</body>
+</html>
