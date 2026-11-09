@@ -176,6 +176,8 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
   <div id="dayList"></div>
   <div class="group">🍽️ Restos ouverts à Carantec</div>
   <div class="restos" id="restos"></div>
+  <div class="group">🥐 Sur le pouce ou pour se faire plaisir</div>
+  <div class="restos" id="pouce"></div>
 </section>
 
 <!-- EN CE MOMENT -->
@@ -464,8 +466,17 @@ const RESTOS = [
  {n:"Le Cabestan",l:"Port",h:"12h / 18h",j:"00 11 11 00 11 11 11"},
  {n:"La Table de Ty Pot",l:"Bourg",h:"12h / 19h",j:"00 11 11 11 11 11 10"},
  {n:"Crêperie La Chaise du Curé",l:"Bourg",h:"12h / 19h",j:"10 00 00 11 11 11 11",spec:{"2026-11-11":"11"}},
- {n:"Carantec Pizza",l:"Rue Albert Louppe",h:"18h–21h",j:"01 01 00 00 01 01 01"},
- {n:"Stéphane Giraud · salon de thé",l:"Rue Pasteur",h:"7h–19h30 · sandwichs",j:"11 11 11 11 11 11 11"}
+ {n:"Les Midis du Golf",l:"Golf · cuisine de Nicolas Carro",h:"dès 12h30",j:"00 00 10 10 10 10 00"},
+ {n:"Carantec Pizza",l:"Rue Albert Louppe",h:"18h–21h",j:"01 01 00 00 01 01 01"}
+];
+
+// Sur le pouce : horaires lun→dim ("" = fermé)
+const POUCE = [
+ {n:"Stéphane Giraud",l:"Pâtisserie · salon de thé · rue Pasteur",o:["7h–19h30","7h–19h30","7h–19h30","7h–19h30","7h–19h30","7h–19h30","7h–19h30"]},
+ {n:"Boulangerie Pouliquen",l:"Salon de thé · place de la Libération",o:["6h30–19h","6h30–19h","6h30–19h","6h30–19h","6h30–19h","6h30–19h","6h30–19h"]},
+ {n:"Maison Nochez",l:"Boulangerie-pâtisserie · rue Albert Louppe",o:["","7h–19h","7h–19h","7h–19h","7h–19h","7h–19h","8h–13h"]},
+ {n:"Chez Mathieu (CocciMarket)",l:"Épicerie · rue Albert Louppe",o:["8h–19h30","8h–19h30","8h–19h30","8h–19h30","8h–19h30","8h–19h30","8h–12h45"]},
+ {n:"Le Chalet gourmand",l:"Glaces · crêpes · churros · plage du Kélenn",o:["11h–19h","11h–19h","11h–19h","11h–19h","11h–19h","11h–19h","11h–19h"]}
 ];
 
 // Île Callot
@@ -659,6 +670,11 @@ function renderDay(){
     const open=p!=="00";
     return `<div class="r" style="${open?"":"opacity:.5"}"><b>${esc(r.n)}</b><span>${esc(r.l)} · ${esc(r.h)}</span>
       <div class="o"><i class="${p[0]==="1"?"":"off"}">midi</i><i class="${p[1]==="1"?"":"off"}">soir</i></div></div>`;
+  }).join("");
+  $("#pouce").innerHTML = POUCE.map(r=>{
+    const h=r.o[idx]; const open=!!h;
+    return `<div class="r" style="${open?"":"opacity:.5"}"><b>${esc(r.n)}</b><span>${esc(r.l)}</span>
+      <div class="o"><i class="${open?"":"off"}">${open?esc(h):"fermé"}</i></div></div>`;
   }).join("");
 }
 
