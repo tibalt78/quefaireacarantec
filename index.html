@@ -157,6 +157,7 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
 
 <nav class="tabs"><div class="wrap">
   <button class="tab on" data-tab="jour">📅 Jour par jour</button>
+  <button class="tab go" data-go="restosTitle">🍽️ Restos</button>
   <button class="tab" data-tab="continu">🎨 En ce moment</button>
   <button class="tab" data-tab="semaine">🔁 Chaque semaine</button>
   <button class="tab" data-tab="callot">🌊 Île Callot</button>
@@ -174,7 +175,7 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
   <div class="dayhead"><h3 id="dayTitle"></h3><span id="dayCount"></span></div>
   <div id="callotDay"></div>
   <div id="dayList"></div>
-  <div class="group">🍽️ Restos ouverts à Carantec</div>
+  <div class="group" id="restosTitle">🍽️ Restos ouverts à Carantec</div>
   <div class="restos" id="restos"></div>
   <div class="group">🥐 Sur le pouce ou pour se faire plaisir</div>
   <div class="restos" id="pouce"></div>
@@ -714,6 +715,13 @@ function renderCallot(){
 }
 
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
+  if(t.dataset.go){
+    const j=document.querySelector('.tab[data-tab="jour"]');
+    if(!j.classList.contains("on")) j.click();
+    const el=document.getElementById(t.dataset.go);
+    window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-document.querySelector(".tabs").offsetHeight-10,behavior:"smooth"});
+    return;
+  }
   document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===t));
   document.querySelectorAll("main section").forEach(s=>s.classList.toggle("on",s.id===t.dataset.tab));
   if(t.dataset.tab==="jour") buildStrip();
