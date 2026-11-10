@@ -83,6 +83,8 @@ h2{font-size:24px;margin:4px 0 4px}
 .ev.annule{position:relative;overflow:hidden;border-color:#e3a3b8;background:#fff6f9}
 .ev.annule .ti,.ev.annule .t{text-decoration:line-through;text-decoration-color:var(--coral);text-decoration-thickness:2px;color:var(--mute)}
 .ev.annule .pl,.ev.annule .meta,.ev.annule .x{opacity:.6}
+.bandeau-complet{display:inline-block;background:var(--gold);color:var(--ink);font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:6px}
+.ev.complet{border-color:#ecd38a;background:#fffbef}
 .bandeau-annule{display:inline-block;background:var(--coral);color:#fff;font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:6px}
 .annule-motif{font-size:13px;color:var(--coral);font-weight:600;margin-top:6px}
 .ev .t{flex:0 0 56px;font-weight:700;font-size:15px;color:var(--ink)}
@@ -297,7 +299,7 @@ const EV = [
  {d:"2026-11-22",h:"8h30",f:"17h",t:"Foire aux puces de l'AC Léonarde",c:"Saint-Pol-de-Léon",l:"Salle Isidore-Daniélou",k:"fete",p:"1,50 € · gratuit -12 ans"},
  {d:"2026-11-22",h:"10h",t:"Atelier volcanique (dès 5 ans)",c:"Plougoulm",l:"Médiathèque Ty Koulm",k:"enfants",p:"Gratuit",x:"Sur inscription"},
  {d:"2026-11-23",h:"14h30",t:"Conférence : l'innovation dans les chantiers navals de Bretagne Nord",c:"Saint-Pol-de-Léon",l:"Espace des Minimes",k:"culture",p:"3 €"},
- {d:"2026-11-24",h:"20h",t:"Spectacle « Faites des enfants ! » (parentalité)",c:"Morlaix",l:"Langolvas",k:"culture",p:"Gratuit",x:"Réservation obligatoire sur HelloAsso"},
+ {d:"2026-11-24",complet:1,h:"20h",t:"Spectacle « Faites des enfants ! » (parentalité)",c:"Morlaix",l:"Langolvas",k:"culture",p:"Gratuit",x:"Plus de places disponibles (Le Télégramme)"},
  {d:"2026-11-25",h:"10h30",t:"Chouette des histoires sur les sciences !",c:"Plouénan",l:"Médiathèque",k:"enfants",p:"Gratuit"},
  {d:"2026-11-27",h:"18h30",t:"Rencontre avec l'écrivain Pierre Adrian",c:"Saint-Pol-de-Léon",l:"Médiathèque Keroulas",k:"culture",p:"Gratuit"},
  {d:"2026-11-27",h:"19h",t:"Libres en littérature : rencontre avec Léa Chamboncel",c:"Saint-Pol-de-Léon",l:"Livres in Room",k:"culture",p:"Gratuit"},
@@ -633,8 +635,8 @@ function filt(list){return list.filter(e=>(!cat||e.k===cat)&&(!onlyC||e.c==="Car
 function evHTML(e){
   const C=CATS[e.k];
   const time = e.h + (e.f?`<small>→ ${e.f}</small>`:"");
-  return `<div class="ev${e.annule?" annule":""}"><div class="t">${time}</div><div class="b">
-    ${e.annule?'<div class="bandeau-annule">⛔ Annulé</div>':""}
+  return `<div class="ev${e.annule?" annule":e.complet?" complet":""}"><div class="t">${time}</div><div class="b">
+    ${e.annule?'<div class="bandeau-annule">⛔ Annulé</div>':e.complet?'<div class="bandeau-complet">🎟️ Complet</div>':""}
     <div class="ti">${esc(e.t)}</div>
     <div class="pl">📍 ${esc(e.c)}${e.l?" · "+esc(e.l):""}</div>
     <div class="meta"><span class="tag cat" style="background:${C.c}">${C.e} ${C.l}</span>
