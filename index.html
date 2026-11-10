@@ -376,6 +376,7 @@ const EV = [
  {d:"2026-11-21",h:"22h",t:"Soirée électro : T.LESCO.P présente SPLIT",c:"Morlaix",l:"Le Sew, quai de Léon",k:"musique"},
  {d:"2026-11-24",h:"20h",t:"Théâtre : « La langue des crêpes » (Cie Goémon Goéland)",c:"Morlaix",l:"Théâtre du Pays de Morlaix",k:"culture",p:"De 6 à 22 €",x:"Billetterie : 02 98 15 22 77"},
  {d:"2026-11-25",h:"20h",t:"Théâtre : « La langue des crêpes » (Cie Goémon Goéland)",c:"Morlaix",l:"Théâtre du Pays de Morlaix",k:"culture",p:"De 6 à 22 €",x:"Billetterie : 02 98 15 22 77"},
+ {d:"2026-11-26",h:"20h30",t:"Concert : Robert Finley (blues-soul)",c:"Saint-Martin-des-Champs",l:"Le Roudour",k:"musique"},
  {d:"2026-11-26",h:"20h30",t:"Concert : Les Négresses Vertes",c:"Morlaix",l:"Le Sew, quai de Léon",k:"musique"},
  {d:"2026-11-27",h:"20h30",t:"Ballet au cinéma : L'Histoire de Manon (The Royal Ballet)",c:"Carantec",l:"Cinéma L'Étoile",k:"cine"},
  {d:"2026-11-28",h:"17h",t:"Rencontre avec l'historienne Christelle Taraud",c:"Morlaix",l:"Le Sew, quai de Léon",k:"culture"},
@@ -428,7 +429,7 @@ const WEEKLY = [
 // m : recherché dans le lieu et le titre ; n : texte du bouton
 const LIENS = [
  {m:/Cinéma L'Étoile/,u:"https://www.cinema-etoile-carantec.fr",n:"Site du cinéma"},
- {m:/Roudour/,u:"https://www.espace-roudour.com",n:"Site du Roudour"},
+ {m:/^(?!Médiathèque).*Roudour/,u:"https://www.espace-roudour.com",n:"Site du Roudour"},
  {m:/La Salamandre/,u:"https://cinemalasalamandre.fr",n:"Site du cinéma"},
  {m:/Le Sew/,u:"https://www.sew-morlaix.com",n:"Site du Sew"},
  {m:/Théâtre du Pays de Morlaix/,u:"https://www.theatre-du-pays-de-morlaix.fr",n:"Billetterie"},
