@@ -80,6 +80,11 @@ h2{font-size:24px;margin:4px 0 4px}
 .group{margin:18px 0 6px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:700;display:flex;align-items:center;gap:8px}
 .group:after{content:"";flex:1;height:1px;background:var(--line)}
 .ev{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin-bottom:8px}
+.ev.annule{position:relative;overflow:hidden;border-color:#e3a3b8;background:#fff6f9}
+.ev.annule .ti,.ev.annule .t{text-decoration:line-through;text-decoration-color:var(--coral);text-decoration-thickness:2px;color:var(--mute)}
+.ev.annule .pl,.ev.annule .meta,.ev.annule .x{opacity:.6}
+.bandeau-annule{display:inline-block;background:var(--coral);color:#fff;font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:6px}
+.annule-motif{font-size:13px;color:var(--coral);font-weight:600;margin-top:6px}
 .ev .t{flex:0 0 56px;font-weight:700;font-size:15px;color:var(--ink)}
 .ev .t small{display:block;font-weight:500;font-size:12px;color:var(--mute)}
 .ev .b{flex:1;min-width:0}
@@ -356,7 +361,7 @@ const EV = [
  {d:"2026-12-12",h:"10h",t:"Bébés lecteurs",c:"Plougoulm",l:"Médiathèque Ty Koulm",k:"enfants",x:"Sur inscription"},
  {d:"2026-12-12",h:"20h30",t:"Concert « Renan Luce joue Repenti »",c:"Morlaix",l:"Le Sew, quai de Léon",k:"musique",p:"De 27 à 37 €"},
  {d:"2026-11-10",h:"12h",t:"Auberge espagnole de PED (chacun apporte un plat)",c:"Plougasnou",l:"Face à la mairie, 17 rue François-Charles",k:"fete",x:"Ouvert à tous · 06 38 02 02 70"},
- {d:"2026-11-10",h:"13h30",t:"400 ans de la Marine : un hélicoptère H160 se pose au stade",c:"Carantec",l:"Stade du Ménéyer",k:"nature",x:"Flottille 32F de Lanvéoc-Poulmic · visite de l'appareil par les élèves des écoles et démonstration de treuillage"},
+ {d:"2026-11-10",annule:1,h:"13h30",t:"400 ans de la Marine : un hélicoptère H160 se pose au stade",c:"Carantec",l:"Stade du Ménéyer",k:"nature",x:"Flottille 32F de Lanvéoc-Poulmic · visite de l'appareil par les élèves des écoles et démonstration de treuillage"},
  {d:"2026-11-10",h:"15h",f:"15h15",t:"Survol d'un Rafale de la Marine au-dessus du terrain de football",c:"Carantec",l:"Stade du Ménéyer",k:"nature",x:"400 ans de la Marine nationale"},
  {d:"2026-11-10",h:"20h30",t:"Avant-première : Scrooge",c:"Plourin-lès-Morlaix",l:"Cinéville",k:"cine"},
  {d:"2026-11-11",h:"11h",t:"Commémoration du 11-Novembre et dévoilement de deux plaques en mémoire de Jean-Yvon Daniel et Raphaël Chapalain, marins carantécois",c:"Carantec",l:"",k:"culture",x:"Commune de Carantec · 400 ans de la Marine nationale · détachement de 15 marins (flottilles 12F et 32F, PMM) · La Marseillaise chantée par les écoliers"},
@@ -628,7 +633,8 @@ function filt(list){return list.filter(e=>(!cat||e.k===cat)&&(!onlyC||e.c==="Car
 function evHTML(e){
   const C=CATS[e.k];
   const time = e.h + (e.f?`<small>→ ${e.f}</small>`:"");
-  return `<div class="ev"><div class="t">${time}</div><div class="b">
+  return `<div class="ev${e.annule?" annule":""}"><div class="t">${time}</div><div class="b">
+    ${e.annule?'<div class="bandeau-annule">⛔ Annulé</div>':""}
     <div class="ti">${esc(e.t)}</div>
     <div class="pl">📍 ${esc(e.c)}${e.l?" · "+esc(e.l):""}</div>
     <div class="meta"><span class="tag cat" style="background:${C.c}">${C.e} ${C.l}</span>
@@ -637,6 +643,7 @@ function evHTML(e){
       ${e.conf?'<span class="tag conf">horaire à confirmer</span>':""}
       ${lienHTML(e)}</div>
     ${e.x?`<div class="x">${esc(e.x)}</div>`:""}
+    ${e.annule&&typeof e.annule==="string"?`<div class="annule-motif">${esc(e.annule)}</div>`:""}
   </div></div>`;
 }
 
