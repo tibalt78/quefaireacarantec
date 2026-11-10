@@ -399,6 +399,8 @@ const EV = [
 
 // Rendez-vous hebdomadaires — w: jour (0=dim … 6=sam), vac: arrêt pendant les vacances scolaires
 const WEEKLY = [
+ {w:5,n:1,h:"19h",f:"1h30",t:"Soirée salsa, bachata, kizomba avec Ritmo Cubano",c:"Carantec",l:"BDS",k:"musique",p:"Soirée gratuite",x:"Chaque 1er vendredi du mois · 19h apéro et on danse · dîner possible sur réservation jusqu'à 22h · danse jusqu'à 1h30"},
+ {w:0,n:1,h:"16h",f:"21h",t:"Après-midi salsa, bachata, kizomba avec Ritmo Cubano",c:"Carantec",l:"BDS",k:"musique",p:"Non-adhérents Ritmo 5 €",x:"Chaque 1er dimanche du mois · 16h–17h30 initiation salsa ou bachata sur réservation au 06 58 12 36 28 · dès 17h30 on danse jusqu'à 21h"},
  {w:2,h:"8h",f:"13h",t:"Marché",c:"Saint-Pol-de-Léon",l:"Places de Guébriant et du Parvis",k:"fete"},
  {w:2,h:"8h",f:"13h",t:"Marché",c:"Plougasnou",l:"Place de l'Église",k:"fete"},
  {w:3,h:"8h",f:"13h",t:"Marché",c:"Roscoff",l:"Quai d'Auxerre",k:"fete"},
@@ -627,7 +629,7 @@ function inVac(d){return VACANCES.some(([a,b])=>d>=a&&d<=b)}
 function eventsFor(d){
   const dt=pd(d), w=dt.getDay();
   const dated = EV.filter(e=>e.d===d).map(e=>({...e,type:"date"}));
-  const weekly = WEEKLY.filter(e=>e.w===w && !(e.vac&&inVac(d))).map(e=>({...e,type:"week"}));
+  const weekly = WEEKLY.filter(e=>e.w===w && !(e.vac&&inVac(d)) && (!e.n || Math.ceil(dt.getDate()/7)===e.n)).map(e=>({...e,type:"week"}));
   return {dated, weekly};
 }
 function filt(list){return list.filter(e=>(!cat||e.k===cat)&&(!onlyC||e.c==="Carantec"))}
@@ -694,7 +696,7 @@ function renderDay(){
   } else {
     h+=`<div class="empty">Pas d'événement ponctuel annoncé ce jour-là${cat||onlyC?" avec ces filtres":""}.<br>Regardez les rendez-vous réguliers et les expos ci-dessous 👇<br><span style="font-size:13px">Vous connaissez un événement ce jour-là ? Écrivez-nous : <a href="mailto:quefaireacarantec@gmail.com">quefaireacarantec@gmail.com</a></span></div>`;
   }
-  if(W.length) h+=`<div class="group">🔁 Comme chaque ${JOURS[dt.getDay()]}</div>`+W.map(evHTML).join("");
+  if(W.length) h+=`<div class="group">🔁 Rendez-vous réguliers du ${JOURS[dt.getDay()]}</div>`+W.map(evHTML).join("");
   if(P.length) h+=`<div class="group">🎨 Expos et animations en cours</div>`+P.map(p=>evHTML({...p,h:"Jusqu'au",f:pd(p.to).getDate()+" "+MC[pd(p.to).getMonth()]})).join("");
   $("#dayList").innerHTML=h;
   const n=D.length; $("#dayCount").textContent = n? n+" événement"+(n>1?"s":"") : "";
@@ -733,7 +735,7 @@ function renderWeek(){
   $("#week").innerHTML=order.map(w=>{
     const l=WEEKLY.filter(e=>e.w===w).sort((a,b)=>hm(a.h)-hm(b.h));
     return `<div class="wd"><h4>${JOURS[w].charAt(0).toUpperCase()+JOURS[w].slice(1)}</h4><ul>${
-      l.map(e=>`<li><b>${e.h}${e.f?"–"+e.f:""}</b> · ${esc(e.t)} <span style="color:var(--mute)">· ${esc(e.c)}</span>${e.vac?' <span class="tag" style="font-size:10.5px">hors vacances</span>':""} ${lienHTML(e,"lienmini")}</li>`).join("")
+      l.map(e=>`<li><b>${e.h}${e.f?"–"+e.f:""}</b> · ${esc(e.t)} <span style="color:var(--mute)">· ${esc(e.c)}</span>${e.vac?' <span class="tag" style="font-size:10.5px">hors vacances</span>':""}${e.n?` <span class="tag" style="font-size:10.5px">${e.n===1?"1er":e.n+"e"} ${JOURS[w]} du mois</span>`:""} ${lienHTML(e,"lienmini")}</li>`).join("")
     }</ul></div>`;
   }).join("");
 }
