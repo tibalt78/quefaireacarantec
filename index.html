@@ -399,8 +399,8 @@ const EV = [
 
 // Rendez-vous hebdomadaires — w: jour (0=dim … 6=sam), vac: arrêt pendant les vacances scolaires
 const WEEKLY = [
- {w:5,n:1,h:"19h",f:"1h30",t:"Soirée salsa, bachata, kizomba avec Ritmo Cubano",c:"Carantec",l:"Bar des Sports (BDS)",k:"musique",p:"Soirée gratuite",x:"Chaque 1er vendredi du mois · 19h apéro et on danse · dîner possible sur réservation jusqu'à 22h · danse jusqu'à 1h30"},
- {w:0,n:1,dec:2,tagm:"dimanche après le 1er vendredi",h:"16h",f:"21h",t:"Après-midi salsa, bachata, kizomba avec Ritmo Cubano",c:"Carantec",l:"Bar des Sports (BDS)",k:"musique",p:"Non-adhérents Ritmo 5 €",x:"Le dimanche qui suit le 1er vendredi du mois · 16h–17h30 initiation salsa ou bachata sur réservation au 06 58 12 36 28 · dès 17h30 on danse jusqu'à 21h"},
+ {w:5,n:1,sauf:["2027-01-01","2027-01-03"],h:"19h",f:"1h30",t:"Soirée salsa, bachata, kizomba avec Ritmo Cubano",c:"Carantec",l:"Bar des Sports (BDS)",k:"musique",p:"Soirée gratuite",x:"Chaque 1er vendredi du mois · 19h apéro et on danse · dîner possible sur réservation jusqu'à 22h · danse jusqu'à 1h30"},
+ {w:0,n:1,sauf:["2027-01-01","2027-01-03"],dec:2,tagm:"dimanche après le 1er vendredi",h:"16h",f:"21h",t:"Après-midi salsa, bachata, kizomba avec Ritmo Cubano",c:"Carantec",l:"Bar des Sports (BDS)",k:"musique",p:"Non-adhérents Ritmo 5 €",x:"Le dimanche qui suit le 1er vendredi du mois · 16h–17h30 initiation salsa ou bachata sur réservation au 06 58 12 36 28 · dès 17h30 on danse jusqu'à 21h"},
  {w:2,h:"8h",f:"13h",t:"Marché",c:"Saint-Pol-de-Léon",l:"Places de Guébriant et du Parvis",k:"fete"},
  {w:2,h:"8h",f:"13h",t:"Marché",c:"Plougasnou",l:"Place de l'Église",k:"fete"},
  {w:3,h:"8h",f:"13h",t:"Marché",c:"Roscoff",l:"Quai d'Auxerre",k:"fete"},
@@ -629,7 +629,7 @@ function inVac(d){return VACANCES.some(([a,b])=>d>=a&&d<=b)}
 function eventsFor(d){
   const dt=pd(d), w=dt.getDay();
   const dated = EV.filter(e=>e.d===d).map(e=>({...e,type:"date"}));
-  const weekly = WEEKLY.filter(e=>e.w===w && !(e.vac&&inVac(d)) && (!e.n || (dt.getDate()-(e.dec||0)>=1 && Math.ceil((dt.getDate()-(e.dec||0))/7)===e.n))).map(e=>({...e,type:"week"}));
+  const weekly = WEEKLY.filter(e=>e.w===w && !(e.vac&&inVac(d)) && !(e.sauf&&e.sauf.includes(d)) && (!e.n || (dt.getDate()-(e.dec||0)>=1 && Math.ceil((dt.getDate()-(e.dec||0))/7)===e.n))).map(e=>({...e,type:"week"}));
   return {dated, weekly};
 }
 function filt(list){return list.filter(e=>(!cat||e.k===cat)&&(!onlyC||e.c==="Carantec"))}
