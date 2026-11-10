@@ -91,6 +91,8 @@ h2{font-size:24px;margin:4px 0 4px}
 .tag.price{background:var(--sand);color:#7a5520}
 .tag.conf{background:#fdeee9;color:var(--coral)}
 .tag.here{background:var(--ink);color:#fff}
+.tag.lien{background:var(--ink);color:#fff;text-decoration:none}
+.lienmini{font-size:12px;color:var(--sea);white-space:nowrap}
 .ev .x{font-size:13px;color:var(--ink2);margin-top:6px}
 .empty{background:var(--card);border:1px dashed var(--line);border-radius:16px;padding:18px;text-align:center;color:var(--mute)}
 /* RESTOS */
@@ -405,7 +407,7 @@ const WEEKLY = [
  {w:5,h:"14h",t:"Boule plombée",c:"Carantec",l:"Place de l'Étoile",k:"sport"},
  {w:1,h:"9h",t:"Gym Pour Tous : step, renforcement (10h, 11h15), gym douce (14h)",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
  {w:2,h:"11h",t:"Gym Pour Tous : pilates (11h), stretching (17h30)",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
- {w:2,h:"12h30",t:"Hatha Flow avec Gaëlle Naturo Yoga",c:"Carantec",l:"Île aux Dames",k:"sport"},
+ {w:2,h:"12h30",f:"13h30",t:"Hatha Flow avec Gaëlle Naturo Yoga",c:"Carantec",l:"Salle de l'Île aux Dames",k:"sport",p:"16 € la séance",x:"Sur inscription · 06 77 96 81 46",u:"https://www.gaellenaturoyoga.com"},
  {w:2,h:"20h30",t:"Atelier de danse bretonne (Ar Boutou Nevez)",c:"Roscoff",l:"Espace Mathurin Méheut",k:"musique",p:"Gratuit"},
  {w:3,h:"17h",t:"Gym Pour Tous : yoga (17h), stretching (18h45)",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
  {w:4,h:"9h",t:"Gym Pour Tous : renforcement (9h), gym hommes (10h15), pilates (17h)",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
@@ -420,6 +422,26 @@ const WEEKLY = [
  {w:5,h:"8h30",f:"14h",t:"Marché",c:"Lanmeur",l:"Place Tanguy-Prigent",k:"fete"},
  {w:0,h:"10h",f:"12h",t:"Tennis de table, entraînement tous niveaux",c:"Carantec",l:"Salle du Menneyer",k:"sport"}
 ];
+
+// Liens vers le site de l'organisateur ou du lieu (uniquement des sites vérifiés).
+// Un événement peut aussi avoir son propre lien : u:"https://…" (prioritaire).
+// m : recherché dans le lieu et le titre ; n : texte du bouton
+const LIENS = [
+ {m:/Cinéma L'Étoile/,u:"https://www.allocine.fr/seance/salle_gen_csalle=P1954.html",n:"Séances"},
+ {m:/La Salamandre/,u:"https://cinemalasalamandre.fr",n:"Site du cinéma"},
+ {m:/Le Sew/,u:"https://www.sew-morlaix.com",n:"Site du Sew"},
+ {m:/Théâtre du Pays de Morlaix/,u:"https://www.theatre-du-pays-de-morlaix.fr",n:"Billetterie"},
+ {m:/MJC, place du Dossen/,u:"https://www.mjcmorlaix.com",n:"Site de la MJC"},
+ {m:/Cairn de Barnenez/,u:"https://www.barnenez.fr",n:"Site du cairn"},
+ {m:/Gaëlle Naturo Yoga/,u:"https://www.gaellenaturoyoga.com",n:"Réserver"}
+];
+function lien(e){
+  if(e.u) return {u:e.u,n:e.un||"Site web"};
+  const txt=(e.l||"")+" "+(e.t||"");
+  const r=LIENS.find(x=>x.m.test(txt));
+  return r?{u:r.u,n:r.n}:null;
+}
+const lienHTML = (e,cls="tag lien")=>{const L=lien(e);return L?`<a class="${cls}" href="${esc(L.u)}" target="_blank" rel="noopener">🔗 ${esc(L.n)}</a>`:""};
 
 // Expositions et animations sur une période
 const PERIODS = [
@@ -610,7 +632,8 @@ function evHTML(e){
     <div class="meta"><span class="tag cat" style="background:${C.c}">${C.e} ${C.l}</span>
       ${e.c==="Carantec"?'<span class="tag here">Carantec</span>':""}
       ${e.p?`<span class="tag price">${esc(e.p)}</span>`:""}
-      ${e.conf?'<span class="tag conf">horaire à confirmer</span>':""}</div>
+      ${e.conf?'<span class="tag conf">horaire à confirmer</span>':""}
+      ${lienHTML(e)}</div>
     ${e.x?`<div class="x">${esc(e.x)}</div>`:""}
   </div></div>`;
 }
@@ -686,12 +709,12 @@ function renderContinu(){
     <div class="pl" style="color:var(--ink2);font-size:13.5px;margin-top:2px">📍 ${esc(p.c)} · ${esc(p.l)}</div>
     <span class="when">${p.from<=TODAY?"Jusqu'au "+fmt(p.to):"Du "+fmt(p.from)+" au "+fmt(p.to)}</span>
     ${p.p?` <span class="tag price">${esc(p.p)}</span>`:""}
-    ${p.x?`<p>${esc(p.x)}</p>`:""}</div>`).join("");
+    ${p.x?`<p>${esc(p.x)}</p>`:""}${lienHTML(p)}</div>`).join("");
   $("#perma").innerHTML=PERMA.map(p=>`<div class="pc"><div class="ti">${esc(p.t)}</div>
     <div style="color:var(--ink2);font-size:13.5px;margin-top:2px">📍 ${esc(p.c)}${p.l?" · "+esc(p.l):""}</div>
     <span class="when">${esc(p.when)}</span>
     ${p.li?"<ul>"+p.li.map(x=>"<li>"+esc(x)+"</li>").join("")+"</ul>":""}
-    ${p.x?`<p>${esc(p.x)}</p>`:""}</div>`).join("");
+    ${p.x?`<p>${esc(p.x)}</p>`:""}${lienHTML(p)}</div>`).join("");
 }
 
 function renderWeek(){
@@ -699,7 +722,7 @@ function renderWeek(){
   $("#week").innerHTML=order.map(w=>{
     const l=WEEKLY.filter(e=>e.w===w).sort((a,b)=>hm(a.h)-hm(b.h));
     return `<div class="wd"><h4>${JOURS[w].charAt(0).toUpperCase()+JOURS[w].slice(1)}</h4><ul>${
-      l.map(e=>`<li><b>${e.h}${e.f?"–"+e.f:""}</b> · ${esc(e.t)} <span style="color:var(--mute)">· ${esc(e.c)}</span>${e.vac?' <span class="tag" style="font-size:10.5px">hors vacances</span>':""}</li>`).join("")
+      l.map(e=>`<li><b>${e.h}${e.f?"–"+e.f:""}</b> · ${esc(e.t)} <span style="color:var(--mute)">· ${esc(e.c)}</span>${e.vac?' <span class="tag" style="font-size:10.5px">hors vacances</span>':""} ${lienHTML(e,"lienmini")}</li>`).join("")
     }</ul></div>`;
   }).join("");
 }
