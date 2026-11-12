@@ -162,9 +162,10 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
 .group.gresto,.group.gpouce{background:var(--gold);color:var(--ink)}
 .group.gbar,.group.gbiere{background:var(--mag);color:#fff}
 .group.gpouce,.group.gbiere{opacity:.85;margin-top:14px}
+#caviste+.group,#bars+.group{margin-top:14px}
 .group.gresto:after,.group.gpouce:after,.group.gbar:after,.group.gbiere:after{display:none}
 #restos .r,#pouce .r{border-left:4px solid var(--gold)}
-#bars .r,#bieres .r{border-left:4px solid var(--mag)}
+#bars .r,#bieres .r,#caviste .r{border-left:4px solid var(--mag)}
 </style>
 </head>
 <body>
@@ -205,7 +206,9 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
   <div class="group gbar" id="barsTitle">🍺 Où boire un verre à Carantec ?</div>
   <p class="sub" style="margin:-4px 0 10px">⚠️ Les horaires peuvent changer en fonction de l'affluence.</p>
   <div class="restos" id="bars"></div>
-  <div class="group gbiere">🍻 Bières locales</div>
+  <div class="group gbar">🍷 Affiner son palais</div>
+  <div class="restos" id="caviste"></div>
+  <div class="group gbiere">🍻 Bières locales / kéfirs</div>
   <div class="restos" id="bieres"></div>
 </section>
 
@@ -547,13 +550,17 @@ const POUCE = [
  {n:"Le Chalet gourmand",l:"Glaces · crêpes · churros · plage du Kélenn",o:["11h–19h","11h–19h","11h–19h","11h–19h","11h–19h","11h–19h","11h–19h"]}
 ];
 
-// #ouboire — Où boire un verre (horaires lun→dim, "" = fermé ; maj 2026-11-12, source Google Maps)
+// #ouboire — Où boire un verre (horaires lun→dim, "" = fermé ; maj 2026-11-12, source Google Maps et sites)
 const BARS = [
  {"n": "Ho' Penn Bar", "l": "Bar · 34 rue Pasteur", "o": ["17h–1h", "17h–1h", "17h–1h", "17h–1h", "17h–1h", "17h–1h", "17h–1h"]},
  {"n": "Bar des Sports (BDS)", "l": "Bar · 6 pl. de la Libération", "o": ["", "17h30–21h30", "17h30–21h", "11h–13h30 / 17h30–21h30", "17h30–1h30", "17h30–1h30", ""], "u": "https://bds-carantec.pages.dev", "un": "Site du bar"},
  {"n": "L'Antidote", "l": "Bar · 1 rue Pasteur", "o": ["17h–22h", "17h–22h", "17h–22h", "", "17h–22h", "17h–22h", "17h–22h"]},
  {"n": "Café Central", "l": "Bar-tabac · 4 pl. de la Libération", "o": ["7h30–19h30", "", "7h30–19h30", "7h30–19h30", "7h30–19h30", "9h–19h30", "8h30–19h30"]},
- {"n": "Les Ondes", "l": "Bar-tabac · 1 av. des Français Libres", "o": ["8h30–19h30", "7h30–19h30", "7h30–19h30", "7h30–19h30", "7h30–20h", "8h30–20h", "9h–13h"]}
+ {"n": "Les Ondes", "l": "Bar-tabac · 1 av. des Français Libres", "o": ["8h30–19h30", "7h30–19h30", "7h30–19h30", "7h30–19h30", "7h30–20h", "8h30–20h", "9h–13h"]},
+ {"n": "Le Grand Bain", "l": "Librairie-café, bar à vin · centre-ville", "o": ["", "", "10h–13h30 / 15h–19h", "9h–13h30 / 15h–19h", "10h–13h30 / 15h–19h", "10h–13h30 / 15h–19h", ""], "u": "https://www.librairielegrandbain.com", "un": "Site de la librairie"}
+];
+const CAVISTE = [
+ {"n": "Un Vin, des Vins", "l": "Caviste · épicerie fine · whisky, rhum, champagne de producteurs · 9 rue du Pilote Trémintin", "o": ["", "10h–12h30 / 15h30–19h30", "10h–12h30 / 15h30–19h30", "10h–12h30 / 15h30–19h30", "10h–12h30 / 15h30–19h30", "10h–12h30 / 15h30–19h30", "10h–12h30"]}
 ];
 const BIERES = [
  {"n": "La Brasserie Graphique", "l": "Bière artisanale de Carantec · 2 rue du Kelenn", "o": ["", "16h–20h", "16h–20h", "10h30–12h30 / 16h–20h", "16h–20h", "10h30–12h30 / 15h30–20h", ""]},
@@ -765,6 +772,7 @@ function renderDay(){
   };
   $("#bars").innerHTML = BARS.map(barHTML).join("");
   $("#bieres").innerHTML = BIERES.map(barHTML).join("");
+  $("#caviste").innerHTML = CAVISTE.map(barHTML).join("");
   $("#pouce").innerHTML = POUCE.map(r=>{
     const h=r.o[idx]; const open=!!h;
     return `<div class="r" style="${open?"":"opacity:.5"}"><b>${rNom(r)}</b><span>${esc(r.l)}</span>
