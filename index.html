@@ -7,13 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 262'%3E%3Cpath d='M38 74C38 18 142 18 142 74C142 116 90 112 90 164' fill='none' stroke='%23C8287A' stroke-width='34' stroke-linecap='round'/%3E%3Ccircle cx='90' cy='214' r='23' fill='%23F2C230'/%3E%3C/svg%3E">
-<meta name="description" content="Agenda jour par jour de Carantec et ses environs : sorties, expos, sport, cinéma, restos et horaires de passage vers l'île Callot.">
+<meta name="description" content="Agenda jour par jour de Carantec et ses environs : sorties, expos, sport, cinéma, restos, bars et horaires de passage vers l'île Callot.">
 <link rel="canonical" href="https://quefaireacarantec.fr/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Que faire à Carantec et ses environs ?">
 <meta property="og:title" content="Que faire à Carantec et ses environs ?">
-<meta property="og:description" content="Tout ce qui se passe, jour après jour : sorties, expos, sport, ciné, restos et passages vers l'île Callot.">
+<meta property="og:description" content="Tout ce qui se passe, jour après jour : sorties, expos, sport, ciné, restos, bars et passages vers l'île Callot.">
 <meta property="og:url" content="https://quefaireacarantec.fr/">
 <meta property="og:image" content="https://quefaireacarantec.fr/img/partage.jpg">
 <meta property="og:image:width" content="1200">
@@ -162,13 +162,14 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
   <img src="img/hero.jpg" alt="Coucher de soleil sur la baie de Morlaix">
   <div class="wrap">
     <h1 class="brand"><svg class="q" viewBox="0 0 180 262" aria-hidden="true"><path d="M 38 74 C 38 18, 142 18, 142 74 C 142 116, 90 112, 90 164" fill="none" stroke="#C8287A" stroke-width="34" stroke-linecap="round"/><circle cx="90" cy="214" r="23" fill="#F2C230" stroke="#D99A00" stroke-width="3"/><path d="M 40 248 q 12 -10 25 0 t 25 0 t 25 0 t 25 0" fill="none" stroke="#8fe0d2" stroke-width="7" stroke-linecap="round"/></svg><span><span class="b1">Que faire à</span><span class="b2">Carantec</span><span class="b3">et ses environs ?</span></span></h1>
-    <p>Tout ce qui se passe, jour après jour, à moins de 20 km&nbsp;: sorties, expos, sport, ciné, restos et passages vers l'île Callot.</p>
+    <p>Tout ce qui se passe, jour après jour, à moins de 20 km&nbsp;: sorties, expos, sport, ciné, restos, bars et passages vers l'île Callot.</p>
   </div>
 </header>
 
 <nav class="tabs"><div class="wrap">
   <button class="tab on" data-tab="jour">📅 Jour par jour</button>
   <button class="tab go" data-go="restosTitle">🍽️ Restos</button>
+  <button class="tab go" data-go="barsTitle">🍺 Bars</button>
   <button class="tab" data-tab="continu">🎨 En ce moment</button>
   <button class="tab" data-tab="semaine">🔁 Chaque semaine</button>
   <button class="tab" data-tab="callot">🌊 Île Callot</button>
@@ -190,6 +191,11 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
   <div class="restos" id="restos"></div>
   <div class="group">🥐 Sur le pouce / pour se faire plaisir</div>
   <div class="restos" id="pouce"></div>
+  <div class="group" id="barsTitle">🍺 Où boire un verre à Carantec ?</div>
+  <p class="sub" style="margin:-4px 0 10px">⚠️ Les horaires peuvent changer en fonction de l'affluence.</p>
+  <div class="restos" id="bars"></div>
+  <div class="group">🍻 Bières locales</div>
+  <div class="restos" id="bieres"></div>
 </section>
 
 <!-- EN CE MOMENT -->
@@ -530,6 +536,19 @@ const POUCE = [
  {n:"Le Chalet gourmand",l:"Glaces · crêpes · churros · plage du Kélenn",o:["11h–19h","11h–19h","11h–19h","11h–19h","11h–19h","11h–19h","11h–19h"]}
 ];
 
+// #ouboire — Où boire un verre (horaires lun→dim, "" = fermé ; maj 2026-11-12, source Google Maps)
+const BARS = [
+ {"n": "Ho' Penn Bar", "l": "Bar · 34 rue Pasteur", "o": ["17h–1h", "17h–1h", "17h–1h", "17h–1h", "17h–1h", "17h–1h", "17h–1h"]},
+ {"n": "Bar des Sports (BDS)", "l": "Bar · 6 pl. de la Libération", "o": ["", "17h30–21h30", "17h30–21h", "11h–13h30 / 17h30–21h30", "17h30–1h30", "17h30–1h30", ""], "u": "https://bds-carantec.pages.dev", "un": "Site du bar"},
+ {"n": "L'Antidote", "l": "Bar · 1 rue Pasteur", "o": ["17h–22h", "17h–22h", "17h–22h", "", "17h–22h", "17h–22h", "17h–22h"]},
+ {"n": "Café Central", "l": "Bar-tabac · 4 pl. de la Libération", "o": ["7h30–19h30", "", "7h30–19h30", "7h30–19h30", "7h30–19h30", "9h–19h30", "8h30–19h30"]},
+ {"n": "Les Ondes", "l": "Bar-tabac · 1 av. des Français Libres", "o": ["8h30–19h30", "7h30–19h30", "7h30–19h30", "7h30–19h30", "7h30–20h", "8h30–20h", "9h–13h"]}
+];
+const BIERES = [
+ {"n": "La Brasserie Graphique", "l": "Bière artisanale de Carantec · 2 rue du Kelenn", "o": ["", "16h–20h", "16h–20h", "10h30–12h30 / 16h–20h", "16h–20h", "10h30–12h30 / 15h30–20h", ""]},
+ {"n": "Osmê", "l": "Microbrasserie · kéfirs · 22 rue Pasteur", "o": ["", "", "", "9h30–12h30", "9h30–12h30 / 15h30–18h", "", ""], "u": "https://brasserieosme.fr", "un": "Site de la brasserie"}
+];
+
 // Île Callot
 const CALLOT_RAW = `2026-11-01 02h25-05h53,14h59-18h38 56,51
 2026-11-02 03h59-06h41,16h33-19h48 47
@@ -728,6 +747,13 @@ function renderDay(){
     return `<div class="r" style="${open?"":"opacity:.5"}"><b>${rNom(r)}</b><span>${esc(r.l)} · ${esc(r.h)}</span>
       <div class="o"><i class="${p[0]==="1"?"":"off"}">${esc(mi)}</i><i class="${p[1]==="1"?"":"off"}">soir</i></div>${rLien(r)}</div>`;
   }).join("");
+  const barHTML=r=>{
+    const h=r.o[idx]; const open=!!h;
+    return `<div class="r" style="${open?"":"opacity:.5"}"><b>${rNom(r)}</b><span>${esc(r.l)}</span>
+      <div class="o"><i class="${open?"":"off"}">${open?esc(h):"fermé"}</i></div>${rLien(r)}</div>`;
+  };
+  $("#bars").innerHTML = BARS.map(barHTML).join("");
+  $("#bieres").innerHTML = BIERES.map(barHTML).join("");
   $("#pouce").innerHTML = POUCE.map(r=>{
     const h=r.o[idx]; const open=!!h;
     return `<div class="r" style="${open?"":"opacity:.5"}"><b>${rNom(r)}</b><span>${esc(r.l)}</span>
