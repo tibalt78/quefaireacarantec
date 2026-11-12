@@ -107,6 +107,8 @@ h2{font-size:24px;margin:4px 0 4px}
 .r{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:13.5px}
 .r b{display:block;font-size:14.5px}
 .r span{color:var(--mute);font-size:12.5px}
+.r b a{color:inherit;text-decoration:none}
+.r a.rl{display:inline-block;margin-top:5px;font-size:12px;font-weight:600;color:var(--green);text-decoration:none}
 .r .o{margin-top:5px;display:flex;gap:5px}
 .r .o i{font-style:normal;font-size:11.5px;font-weight:600;padding:2px 7px;border-radius:6px;background:#e7f3ec;color:var(--green)}
 .r .o i.off{background:#f3f3f3;color:#aaa;text-decoration:line-through}
@@ -186,7 +188,7 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
   <div id="dayList"></div>
   <div class="group" id="restosTitle">🍽️ Restos ouverts à Carantec</div>
   <div class="restos" id="restos"></div>
-  <div class="group">🥐 Sur le pouce ou pour se faire plaisir</div>
+  <div class="group">🥐 Sur le pouce / pour se faire plaisir</div>
   <div class="restos" id="pouce"></div>
 </section>
 
@@ -231,7 +233,7 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
 <footer><div class="wrap">
   <div class="brand mini" role="img" aria-label="Que faire à Carantec et ses environs ?"><svg class="q" viewBox="0 0 180 262" aria-hidden="true"><path d="M 38 74 C 38 18, 142 18, 142 74 C 142 116, 90 112, 90 164" fill="none" stroke="#C8287A" stroke-width="34" stroke-linecap="round"/><circle cx="90" cy="214" r="23" fill="#F2C230" stroke="#D99A00" stroke-width="3"/><path d="M 40 248 q 12 -10 25 0 t 25 0 t 25 0 t 25 0" fill="none" stroke="#3A9E8F" stroke-width="7" stroke-linecap="round"/></svg><span><span class="b1">Que faire à</span><span class="b2">Carantec</span><span class="b3">et ses environs</span></span></div>
 Retrouvez-nous sur Facebook : <b>Que faire à Carantec et ses environs ?</b><br>Un événement à annoncer : <a href="mailto:quefaireacarantec@gmail.com">quefaireacarantec@gmail.com</a><br>
-  Infos sous réserve de modification par les organisateurs. Mise à jour : 9 novembre 2026.
+  Infos sous réserve de modification par les organisateurs. Mise à jour : 12 novembre 2026.
 </div></footer>
 
 <script>
@@ -446,7 +448,8 @@ const LIENS = [
  {m:/Théâtre du Pays de Morlaix/,u:"https://www.theatre-du-pays-de-morlaix.fr",n:"Billetterie"},
  {m:/MJC, place du Dossen/,u:"https://www.mjcmorlaix.com",n:"Site de la MJC"},
  {m:/Cairn de Barnenez/,u:"https://www.barnenez.fr",n:"Site du cairn"},
- {m:/Gaëlle Naturo Yoga/,u:"https://www.gaellenaturoyoga.com",n:"Réserver"}
+ {m:/Gaëlle Naturo Yoga/,u:"https://www.gaellenaturoyoga.com",n:"Réserver"},
+ {m:/Golf de la Baie de Morlaix/,u:"https://www.golf-baiedemorlaix.bzh/fr/les-midis-du-golf",n:"Site du golf"}
 ];
 function lien(e){
   if(e.u) return {u:e.u,n:e.un||"Site web"};
@@ -496,19 +499,22 @@ const PERMA = [
 ];
 
 // Restos : 7 paires lun→dim, chaque paire = midi/soir
+// u : lien vérifié (site, page Facebook ou fiche de l'office de tourisme), un : texte du lien
+// m : texte de la pastille du midi selon le jour (lun→dim), à la place de « midi »
+const OT = "Fiche office de tourisme";
 const RESTOS = [
- {n:"Nicolas Carro",l:"Rue du Kélenn",h:"12h15 / 19h30",j:"00 00 11 11 11 11 11"},
- {n:"La Marinière",l:"Port",h:"12h / 19h",j:"00 00 11 11 11 11 10"},
- {n:"Le Cabestan",l:"Port",h:"12h / 18h",j:"00 11 11 00 11 11 11"},
- {n:"La Table de Ty Pot",l:"Bourg",h:"12h / 19h",j:"00 11 11 11 11 11 10"},
- {n:"Crêperie La Chaise du Curé",l:"Bourg",h:"12h / 19h",j:"10 00 00 11 11 11 11",spec:{"2026-11-11":"11"}},
- {n:"Les Midis du Golf",l:"Golf · cuisine de Nicolas Carro",h:"dès 12h30",j:"00 00 10 10 10 10 00"},
+ {n:"Nicolas Carro",l:"Rue du Kélenn",h:"12h15 / 19h30",j:"00 00 11 11 11 11 11",u:"https://www.hotel-carantec.fr/",un:"Site du restaurant"},
+ {n:"La Marinière",l:"Port",h:"12h / 19h",j:"00 00 11 11 11 11 10",u:"https://www.facebook.com/profile.php?id=100091860327627",un:"Page Facebook"},
+ {n:"Le Cabestan",l:"Port",h:"12h / 18h",j:"00 11 11 00 11 11 11",u:"https://baiedemorlaix.bzh/en/restaurant/le-cabestan-et-la-cambuse-resbre029fs000wu",un:OT},
+ {n:"La Table de Ty Pot",l:"Bourg",h:"12h / 19h",j:"00 11 11 11 11 11 10",u:"https://www.baiedemorlaix.bzh/en/restaurant/la-table-de-ty-pot-resbre029fs0002f-2/",un:OT},
+ {n:"Crêperie La Chaise du Curé",l:"Bourg",h:"12h / 19h",j:"10 00 00 11 11 11 11",spec:{"2026-11-11":"11"},u:"https://www.baiedemorlaix.bzh/en/restaurant/creperie-la-chaise-du-cure-resbre029fs000l0-2/",un:OT},
+ {n:"Restaurant du Golf",l:"Golf · cuisine de Nicolas Carro",h:"lun.–mar. snack · mer.–sam. bistronomie · dim. brunch",j:"10 10 10 10 10 10 10",m:["snack","snack","midi","midi","midi","midi","brunch"],u:"https://www.golf-baiedemorlaix.bzh/fr/les-midis-du-golf",un:"Site du golf"},
  {n:"Carantec Pizza",l:"Rue Albert Louppe",h:"18h–21h",j:"01 01 00 00 01 01 01"}
 ];
 
 // Sur le pouce : horaires lun→dim ("" = fermé)
 const POUCE = [
- {n:"Stéphane Giraud",l:"Pâtisserie · salon de thé · rue Pasteur",o:["7h–19h30","7h–19h30","7h–19h30","7h–19h30","7h–19h30","7h–19h30","7h–19h30"]},
+ {n:"Stéphane Giraud",l:"Pâtisserie · salon de thé · rue Pasteur",u:"https://baiedemorlaix.bzh/en/service-et-commerce/ogourmandise-patisserie-chocolaterie-b2914bre029001kh",un:OT,o:["7h–19h30","7h–19h30","7h–19h30","7h–19h30","7h–19h30","7h–19h30","7h–19h30"]},
  {n:"Boulangerie Pouliquen",l:"Salon de thé · place de la Libération",o:["6h30–19h","6h30–19h","6h30–19h","6h30–19h","6h30–19h","6h30–19h","6h30–19h"]},
  {n:"Maison Nochez",l:"Boulangerie-pâtisserie · rue Albert Louppe",o:["","7h–19h","7h–19h","7h–19h","7h–19h","7h–19h","8h–13h"]},
  {n:"Chez Mathieu (CocciMarket)",l:"Épicerie · rue Albert Louppe",o:["8h–19h30","8h–19h30","8h–19h30","8h–19h30","8h–19h30","8h–19h30","8h–12h45"]},
@@ -702,18 +708,21 @@ function renderDay(){
   if(P.length) h+=`<div class="group">🎨 Expos et animations en cours</div>`+P.map(p=>evHTML({...p,h:"Jusqu'au",f:pd(p.to).getDate()+" "+MC[pd(p.to).getMonth()]})).join("");
   $("#dayList").innerHTML=h;
   const n=D.length; $("#dayCount").textContent = n? n+" événement"+(n>1?"s":"") : "";
-  // Restos
+  // Restos (nom et lien cliquables quand un lien vérifié existe)
+  const rNom=r=>r.u?`<a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.n)}</a>`:esc(r.n);
+  const rLien=r=>r.u?`<a class="rl" href="${esc(r.u)}" target="_blank" rel="noopener">🔗 ${esc(r.un||"Site web")}</a>`:"";
   const idx=(dt.getDay()+6)%7;
   $("#restos").innerHTML = RESTOS.map(r=>{
     let p=r.j.split(" ")[idx]; if(r.spec&&r.spec[sel]) p=r.spec[sel];
     const open=p!=="00";
-    return `<div class="r" style="${open?"":"opacity:.5"}"><b>${esc(r.n)}</b><span>${esc(r.l)} · ${esc(r.h)}</span>
-      <div class="o"><i class="${p[0]==="1"?"":"off"}">midi</i><i class="${p[1]==="1"?"":"off"}">soir</i></div></div>`;
+    const mi=r.m?r.m[idx]:"midi";
+    return `<div class="r" style="${open?"":"opacity:.5"}"><b>${rNom(r)}</b><span>${esc(r.l)} · ${esc(r.h)}</span>
+      <div class="o"><i class="${p[0]==="1"?"":"off"}">${esc(mi)}</i><i class="${p[1]==="1"?"":"off"}">soir</i></div>${rLien(r)}</div>`;
   }).join("");
   $("#pouce").innerHTML = POUCE.map(r=>{
     const h=r.o[idx]; const open=!!h;
-    return `<div class="r" style="${open?"":"opacity:.5"}"><b>${esc(r.n)}</b><span>${esc(r.l)}</span>
-      <div class="o"><i class="${open?"":"off"}">${open?esc(h):"fermé"}</i></div></div>`;
+    return `<div class="r" style="${open?"":"opacity:.5"}"><b>${rNom(r)}</b><span>${esc(r.l)}</span>
+      <div class="o"><i class="${open?"":"off"}">${open?esc(h):"fermé"}</i></div>${rLien(r)}</div>`;
   }).join("");
 }
 
