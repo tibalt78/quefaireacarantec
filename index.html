@@ -154,6 +154,17 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
 .tab.on{background:var(--ink)}.d.today{border-color:var(--mag)}
 @media(min-width:700px){.brand .q{width:86px}.brand .b1{font-size:16px}.brand .b2{font-size:76px}.brand .b3{font-size:15px}}
 @media(min-width:700px){h1{font-size:46px}.hero{height:380px}.restos{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:1fr 1fr}.week{grid-template-columns:1fr 1fr}}
+
+/* Restos et bars bien visibles (demande de Thomas, 12/11/2026) */
+.tab.tresto{background:var(--gold);color:var(--ink)}
+.tab.tbar{background:var(--mag);color:#fff}
+.group.gresto,.group.gpouce,.group.gbar,.group.gbiere{font-size:13.5px;letter-spacing:.06em;padding:10px 14px;border-radius:12px;margin-top:26px}
+.group.gresto,.group.gpouce{background:var(--gold);color:var(--ink)}
+.group.gbar,.group.gbiere{background:var(--mag);color:#fff}
+.group.gpouce,.group.gbiere{opacity:.85;margin-top:14px}
+.group.gresto:after,.group.gpouce:after,.group.gbar:after,.group.gbiere:after{display:none}
+#restos .r,#pouce .r{border-left:4px solid var(--gold)}
+#bars .r,#bieres .r{border-left:4px solid var(--mag)}
 </style>
 </head>
 <body>
@@ -168,8 +179,8 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
 
 <nav class="tabs"><div class="wrap">
   <button class="tab on" data-tab="jour">📅 Jour par jour</button>
-  <button class="tab go" data-go="restosTitle">🍽️ Restos</button>
-  <button class="tab go" data-go="barsTitle">🍺 Bars</button>
+  <button class="tab go tresto" data-go="restosTitle">🍽️ Restos</button>
+  <button class="tab go tbar" data-go="barsTitle">🍺 Bars</button>
   <button class="tab" data-tab="continu">🎨 En ce moment</button>
   <button class="tab" data-tab="semaine">🔁 Chaque semaine</button>
   <button class="tab" data-tab="callot">🌊 Île Callot</button>
@@ -187,14 +198,14 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
   <div class="dayhead"><h3 id="dayTitle"></h3><span id="dayCount"></span></div>
   <div id="callotDay"></div>
   <div id="dayList"></div>
-  <div class="group" id="restosTitle">🍽️ Restos ouverts à Carantec</div>
+  <div class="group gresto" id="restosTitle">🍽️ Restos ouverts à Carantec</div>
   <div class="restos" id="restos"></div>
-  <div class="group">🥐 Sur le pouce / pour se faire plaisir</div>
+  <div class="group gpouce">🥐 Sur le pouce / pour se faire plaisir</div>
   <div class="restos" id="pouce"></div>
-  <div class="group" id="barsTitle">🍺 Où boire un verre à Carantec ?</div>
+  <div class="group gbar" id="barsTitle">🍺 Où boire un verre à Carantec ?</div>
   <p class="sub" style="margin:-4px 0 10px">⚠️ Les horaires peuvent changer en fonction de l'affluence.</p>
   <div class="restos" id="bars"></div>
-  <div class="group">🍻 Bières locales</div>
+  <div class="group gbiere">🍻 Bières locales</div>
   <div class="restos" id="bieres"></div>
 </section>
 
