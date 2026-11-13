@@ -564,7 +564,9 @@ const BARS = [
 // Pour l'apéro à la maison : achats à emporter (caviste, plateaux apéro)
 const APERO = [
  {"n": "Un Vin, des Vins", "l": "Caviste · vins, whisky, rhum, champagne · 9 rue du Pilote Trémintin", "o": ["", "10h–12h30 / 15h30–19h30", "10h–12h30 / 15h30–19h30", "10h–12h30 / 15h30–19h30", "10h–12h30 / 15h30–19h30", "10h–12h30 / 15h30–19h30", "10h–12h30"]},
- {"n": "Chez Mathieu (CocciMarket)", "l": "Planches apéro sur commande : charcuterie, fromage ou mixte · 2 rue Albert Louppe", "o": ["8h–19h30", "8h–19h30", "8h–19h30", "8h–19h30", "8h–19h30", "8h–19h30", "8h–12h45"]}
+ {"n": "Chez Mathieu (CocciMarket)", "l": "Planches apéro sur commande : charcuterie, fromage ou mixte · 2 rue Albert Louppe", "o": ["8h–19h30", "8h–19h30", "8h–19h30", "8h–19h30", "8h–19h30", "8h–19h30", "8h–12h45"]},
+ {"n": "U Express", "l": "Vins, bières et tout pour l'apéro · 2 rue du Parc Coz"},
+ {"n": "Chez Sylvain", "l": "Boucherie · charcuterie et traiteur · 8 rue Pasteur"}
 ];
 const BIERES = [
  {"n": "La Brasserie Graphique", "l": "Bière de Carantec · sur place ou à emporter · 2 rue du Kelenn", "o": ["", "16h–20h", "16h–20h", "10h30–12h30 / 16h–20h", "16h–20h", "10h30–12h30 / 15h30–20h", ""]},
@@ -770,6 +772,7 @@ function renderDay(){
       <div class="o"><i class="${p[0]==="1"?"":"off"}">${esc(mi)}</i><i class="${p[1]==="1"?"":"off"}">soir</i></div>${rLien(r)}</div>`;
   }).join("");
   const barHTML=r=>{
+    if(!r.o) return `<div class="r"><b>${rNom(r)}</b><span>${esc(r.l)}</span>${rLien(r)}</div>`;
     const h=r.o[idx]; const open=!!h;
     return `<div class="r" style="${open?"":"opacity:.5"}"><b>${rNom(r)}</b><span>${esc(r.l)}</span>
       <div class="o"><i class="${open?"":"off"}">${open?esc(h):"fermé"}</i></div>${rLien(r)}</div>`;
