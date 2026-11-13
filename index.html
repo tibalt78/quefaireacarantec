@@ -201,7 +201,7 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
   <div id="dayList"></div>
   <div class="group gresto" id="restosTitle">🍽️ Restos ouverts à Carantec</div>
   <div class="restos" id="restos"></div>
-  <div class="group gpouce">🥐 Sur le pouce / pour se faire plaisir</div>
+  <div class="group gpouce">🥐 Sur le pouce / traiteur / pour se faire plaisir</div>
   <div class="restos" id="pouce"></div>
   <div class="group gbar" id="barsTitle">🍺 Où boire un verre à Carantec ?</div>
   <p class="sub" style="margin:-4px 0 10px">⚠️ Les horaires peuvent changer en fonction de l'affluence.</p>
@@ -549,6 +549,7 @@ const POUCE = [
  {n:"Boulangerie Pouliquen",l:"Salon de thé · place de la Libération",o:["6h30–19h","6h30–19h","6h30–19h","6h30–19h","6h30–19h","6h30–19h","6h30–19h"]},
  {n:"Maison Nochez",l:"Boulangerie-pâtisserie · rue Albert Louppe",o:["","7h–19h","7h–19h","7h–19h","7h–19h","7h–19h","8h–13h"]},
  {n:"Chez Mathieu (CocciMarket)",l:"Épicerie · rue Albert Louppe",o:["8h–19h30","8h–19h30","8h–19h30","8h–19h30","8h–19h30","8h–19h30","8h–12h45"]},
+ {n:"Chez Sylvain",l:"Traiteur · boucherie-charcuterie · 8 rue Pasteur"},
  {n:"Le Chalet gourmand",l:"Glaces · crêpes · churros · plage du Kélenn",o:["11h–19h","11h–19h","11h–19h","11h–19h","11h–19h","11h–19h","11h–19h"]}
 ];
 
@@ -781,6 +782,7 @@ function renderDay(){
   $("#bieres").innerHTML = BIERES.map(barHTML).join("");
   $("#apero").innerHTML = APERO.map(barHTML).join("");
   $("#pouce").innerHTML = POUCE.map(r=>{
+    if(!r.o) return `<div class="r"><b>${rNom(r)}</b><span>${esc(r.l)}</span>${rLien(r)}</div>`;
     const h=r.o[idx]; const open=!!h;
     return `<div class="r" style="${open?"":"opacity:.5"}"><b>${rNom(r)}</b><span>${esc(r.l)}</span>
       <div class="o"><i class="${open?"":"off"}">${open?esc(h):"fermé"}</i></div>${rLien(r)}</div>`;
