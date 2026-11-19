@@ -96,6 +96,7 @@ h2{font-size:24px;margin:4px 0 4px}
 .tag{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:#f0f3f5;color:var(--ink2)}
 .tag.cat{color:#fff}
 .tag.price{background:var(--sand);color:#7a5520}
+.tag.don{background:#ffd23f;color:#1d2a6b}
 .tag.conf{background:#fdeee9;color:var(--coral)}
 .tag.here{background:var(--ink);color:#fff}
 .tag.lien{background:var(--ink);color:#fff;text-decoration:none}
@@ -259,7 +260,7 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
 <footer><div class="wrap">
   <div class="brand mini" role="img" aria-label="Que faire à Carantec et ses environs ?"><svg class="q" viewBox="0 0 180 262" aria-hidden="true"><path d="M 38 74 C 38 18, 142 18, 142 74 C 142 116, 90 112, 90 164" fill="none" stroke="#C8287A" stroke-width="34" stroke-linecap="round"/><circle cx="90" cy="214" r="23" fill="#F2C230" stroke="#D99A00" stroke-width="3"/><path d="M 40 248 q 12 -10 25 0 t 25 0 t 25 0 t 25 0" fill="none" stroke="#3A9E8F" stroke-width="7" stroke-linecap="round"/></svg><span><span class="b1">Que faire à</span><span class="b2">Carantec</span><span class="b3">et ses environs</span></span></div>
 Retrouvez-nous sur Facebook : <b>Que faire à Carantec et ses environs ?</b><br>Un événement à annoncer : <a href="mailto:quefaireacarantec@gmail.com">quefaireacarantec@gmail.com</a><br>
-  Infos sous réserve de modification par les organisateurs. Mise à jour : 14 novembre 2026.
+  Infos sous réserve de modification par les organisateurs. Mise à jour : 19 novembre 2026.
 </div></footer>
 
 <script>
@@ -271,7 +272,8 @@ const CATS = {
   enfants:{l:"Enfants",e:"🧸",c:"#d9a441"},
   sport:{l:"Sport",e:"⚽",c:"#3c8a5f"},
   cine:{l:"Cinéma",e:"🎬",c:"#0f2a3a"},
-  nature:{l:"Nature & découverte",e:"🌿",c:"#0e6e8c"}
+  nature:{l:"Nature & découverte",e:"🌿",c:"#0e6e8c"},
+  telethon:{l:"Téléthon",e:"💛",c:"#1d2a6b"}
 };
 // d: date, h: heure, f: fin, t: titre, c: commune, l: lieu, k: catégorie, p: tarif confirmé, x: info, conf: à confirmer
 const EV = [
@@ -376,7 +378,7 @@ const EV = [
  {d:"2026-12-01",h:"18h30",t:"La Virgule Verte : accueillir la biodiversité chez soi",c:"Morlaix",l:"La Virgule, rue de Paris",k:"nature",p:"Gratuit"},
  {d:"2026-12-01",h:"20h",t:"Causerie en breton",c:"Plouezoc'h",l:"Salle polyvalente",k:"culture",p:"Gratuit"},
  {d:"2026-12-02",h:"20h30",t:"Conférence « Trafic de biens culturels, Aglae fait parler la matière »",c:"Morlaix",l:"CCI, aérodrome",k:"culture",p:"Gratuit"},
- {d:"2026-12-05",h:"14h",f:"22h",t:"Téléthon : bal swing et concerts",c:"Carantec",l:"Salle du Kelenn",k:"musique",p:"Prix libre",x:"14h–16h30 orchestres et élèves de musique du Patio et de l'Association artistique de Carantec · 16h30–18h30 intermèdes musicaux avec plusieurs artistes · 19h–20h initiation aux danses swing avec Swing en Scène · 20h–22h bal swing avec le big band et l'atelier jazz de l'Association artistique de Carantec · bénéfices reversés au Téléthon"},
+ {d:"2026-12-05",h:"14h",f:"22h",t:"Téléthon : bal swing et concerts",c:"Carantec",l:"Salle du Kelenn",k:"telethon",don:1,p:"Prix libre",x:"14h–16h30 orchestres et élèves de musique du Patio et de l'Association artistique de Carantec · 16h30–18h30 intermèdes musicaux avec plusieurs artistes · 19h–20h initiation aux danses swing avec Swing en Scène · 20h–22h bal swing avec le big band et l'atelier jazz de l'Association artistique de Carantec · bénéfices reversés au Téléthon"},
  {d:"2026-12-05",h:"14h",f:"19h",t:"Grand marché de Noël d'Arts Ty Lanmeur",c:"Lanmeur",l:"Salle Steredenn",k:"fete",p:"Entrée gratuite",x:"45 artisans, Père Noël"},
  {d:"2026-12-05",h:"20h",t:"Récital de Florent Albrecht « Schubert et la fête ! »",c:"Saint-Jean-du-Doigt",l:"Manoir de Pont-ar-Gler",k:"musique",p:"18 € · réduit 15 € · gratuit -15 ans",x:"Réservation sur HelloAsso · 06 14 38 63 38"},
  {d:"2026-12-05",h:"20h30",t:"Concert de Danakil",c:"Saint-Martin-des-Champs",l:"Le Roudour",k:"musique",p:"29 € · réduit 26 €"},
@@ -473,7 +475,29 @@ const EV = [
   {d:"2026-12-11",h:"9h45",f:"10h30",t:"Bébés lecteurs « En attendant Noël »",c:"Mespaul",l:"Médiathèque",k:"enfants",p:"Gratuit",x:"Sur inscription"},
   {d:"2026-12-12",h:"15h",f:"17h",t:"Atelier création de bijoux en cuir (dès 6 ans)",c:"Plougasnou",l:"Atelier Sabine Grangé, 20 rue François-Charles",k:"culture",p:"45 €",x:"Sur inscription, 8 personnes maximum"},
   {d:"2026-12-26",h:"16h",f:"22h",t:"Guinguette et dégustation d'huîtres (Airs de fête)",c:"Carantec",l:"Salle du Kelenn",k:"fete",p:"Entrée libre",x:"Huîtres offertes par la municipalité, vin chaud, crêpes, châtaignes, brochettes au braséro le soir · musique avec les Ty Barons, tombola, structures gonflables"},
-  {d:"2026-12-26",h:"16h15",f:"17h",t:"Bain de Noël (Airs de fête)",c:"Carantec",l:"Plage du Kelenn",k:"fete",p:"Gratuit",x:"Échauffement musical puis grand plongeon, sous la surveillance de la SNSM de Roscoff"}
+  {d:"2026-12-26",h:"16h15",f:"17h",t:"Bain de Noël (Airs de fête)",c:"Carantec",l:"Plage du Kelenn",k:"fete",p:"Gratuit",x:"Échauffement musical puis grand plongeon, sous la surveillance de la SNSM de Roscoff"},
+  // Téléthon 2026 (programme intercommunal Guiclan, Sainte-Sève, Carantec, Henvic, Locquénolé, Taulé)
+  {d:"2026-11-21",h:"20h30",t:"Téléthon : soirée dansante",c:"Henvic",l:"Salle Marie-Jacq",k:"telethon",x:"Association Les Arts joyeux · au profit du Téléthon"},
+  {d:"2026-11-22",h:"9h",t:"Téléthon : tournoi de poker",c:"Locquénolé",l:"Salle des fêtes",k:"telethon",x:"Association Poker d'As · au profit du Téléthon"},
+  {d:"2026-11-22",h:"9h30",t:"Téléthon : rencontre interclub de marche",c:"Guiclan",l:"Salle omnisports",k:"telethon",x:"Trotteurs et marcheurs de la Penzé · au profit du Téléthon"},
+  {d:"2026-11-27",h:"14h",t:"Téléthon : concours de dominos",c:"Guiclan",l:"Salle du Triskell",k:"telethon",x:"Club de l'amitié · au profit du Téléthon"},
+  {d:"2026-11-28",h:"9h",t:"Téléthon : tournoi de boules bretonnes",c:"Guiclan",l:"Boulodrome",k:"telethon",x:"Club de boules bretonnes · au profit du Téléthon"},
+  {d:"2026-11-28",h:"14h30",t:"Téléthon : course d'orientation",c:"Locquénolé",l:"Salle Kebrat",k:"telethon",x:"Association Team Outdoor · au profit du Téléthon"},
+  {d:"2026-11-29",h:"15h",t:"Foot : ESCH – ASSM (match du Téléthon)",c:"Carantec",l:"Stade du Meneyer",k:"telethon",x:"Au profit du Téléthon"},
+  {d:"2026-12-01",h:"14h",t:"Téléthon : concours de dominos",c:"Carantec",l:"Foyer pour tous",k:"telethon",x:"Association Foyer pour tous · au profit du Téléthon"},
+  {d:"2026-12-02",h:"14h",t:"Téléthon : concours de dominos",c:"Sainte-Sève",l:"Salle de Kerpernant",k:"telethon",x:"Association Loisirs et détente · au profit du Téléthon"},
+  {d:"2026-12-03",h:"14h30",t:"Téléthon : tournoi de bridge",c:"Carantec",l:"Salle de bridge",k:"telethon",x:"Club de bridge · au profit du Téléthon"},
+  {d:"2026-12-04",h:"18h",f:"22h",t:"Boom du Téléthon",c:"Guiclan",l:"Salle du Triskell",k:"telethon",don:1,p:"Entrée libre",x:"Maquillage, loisirs créatifs, flashmob, vente de décorations de Noël, buvette et petite restauration · APE, APEL, Grain de Sel, Animation jeunesse, section couture du Club de l'amitié et municipalité · bénéfices reversés à l'AFM-Téléthon"},
+  {d:"2026-12-04",h:"20h30",t:"Téléthon : soirée blackminton",c:"Guiclan",l:"Salle omnisports",k:"telethon",don:1,x:"Tennis club des 2 Rives · au profit du Téléthon"},
+  {d:"2026-12-05",h:"10h",t:"Téléthon : cours de stretching",c:"Guiclan",l:"Salle du Triskell",k:"telethon",don:1,x:"Gym pour tous · au profit du Téléthon"},
+  {d:"2026-12-05",h:"14h",t:"Téléthon : marché de Noël et feu d'artifice",c:"Taulé",l:"Salle Héol",k:"telethon",don:1,x:"Comité des fêtes · au profit du Téléthon"},
+  {d:"2026-12-05",h:"20h30",t:"Hand : EBL2 – Pays de Lesneven 1 (Téléthon)",c:"Guiclan",l:"Salle omnisports",k:"telethon",don:1,x:"Entente Bro Léon · au profit du Téléthon"},
+  {d:"2026-12-06",h:"9h30",t:"Téléthon : marche (circuits de 5 et 8 km)",c:"Guiclan",l:"Rendez-vous devant la mairie",k:"telethon",don:1,x:"Marcheurs et trotteurs de la Penzé · au profit du Téléthon"},
+  {d:"2026-12-06",h:"9h30",f:"11h30",t:"Téléthon : descentes en caisse à savon",c:"Guiclan",l:"Rue de Tréminou",k:"telethon",don:1,x:"Association des Caisses à savon d'Henvic · au profit du Téléthon"},
+  {d:"2026-12-06",h:"10h",f:"17h",t:"Téléthon : marché de Noël",c:"Sainte-Sève",l:"Salle des sports",k:"telethon",don:1,x:"APE de l'école publique · au profit du Téléthon"},
+  {d:"2026-12-06",h:"12h",t:"Repas du Téléthon",c:"Guiclan",l:"Salle du Triskell",k:"telethon",don:1,p:"15 € · enfant 8 €",x:"Potage, cochon grillé et gratin dauphinois, dessert et café · boissons en supplément · tickets en vente sur place uniquement · pendant le repas, vente d'huîtres et d'objets créés par les couturières de Taulé et Guiclan"},
+  {d:"2026-12-06",h:"13h",t:"Foot : Taulé US – Lanmeur US (matchs du Téléthon)",c:"Taulé",l:"Terrain de foot",k:"telethon",don:1,x:"Taulé US 2 – Lanmeur US 2 puis Taulé US – Lanmeur US · au profit du Téléthon"},
+  {d:"2026-12-06",h:"14h",t:"Tennis de table : matchs du Téléthon",c:"Guiclan",l:"Salle omnisports",k:"telethon",don:1,x:"ASC Guiclan Tennis de table · R1 : AS Guiclan TTI – 7 Îles TT · R3 : TT2 – Le Richardais 2 · au profit du Téléthon"}
 ];
 // Découverte pêche du bar (plusieurs dates)
 ["2026-11-06","2026-11-17","2026-11-19","2026-11-23","2026-11-25","2026-11-27"].forEach(d=>EV.push({d,h:"9h30",f:"13h",t:"Découverte de la pêche sportive du bar (Pesketa)",c:"Baie de Morlaix",l:"RDV selon météo",k:"nature",p:"100 à 180 €",x:"Sur réservation · 07 87 07 68 01"}));
@@ -770,6 +794,7 @@ function evHTML(e){
     <div class="meta"><span class="tag cat" style="background:${C.c}">${C.e} ${C.l}</span>
       ${e.c==="Carantec"?'<span class="tag here">Carantec</span>':""}
       ${e.p?`<span class="tag price">${esc(e.p)}</span>`:""}
+      ${e.don?'<span class="tag don">📞 Dons au 36 37</span>':""}
       ${e.conf?'<span class="tag conf">horaire à confirmer</span>':""}
       ${lienHTML(e)}</div>
     ${e.x?`<div class="x">${esc(e.x)}</div>`:""}
