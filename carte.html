@@ -24,6 +24,14 @@ header{padding:16px 18px 10px;background:var(--mer);color:#fff}
 header .sur{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
 header h1{font-family:Lora,Georgia,serif;font-size:24px;margin:2px 0 0;line-height:1.15}
 header a{color:#8fe0d2}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;margin-bottom:8px}
+.brand .q{width:40px;height:auto;flex:0 0 auto}
+.brand .b1{display:block;font:700 10.5px/1.2 Poppins,sans-serif;letter-spacing:.3em;text-transform:uppercase}
+.brand .b2{display:block;font:700 30px/1 Lora,Georgia,serif;margin:2px 0 3px}
+.brand .b3{display:flex;align-items:center;gap:8px;font:700 10px/1.2 Poppins,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#8fe0d2}
+.brand .b3:before{content:"";width:20px;height:2px;background:currentColor}
+header h1{font-size:19px;color:#F2C230}
+.mob .q{width:18px;height:auto;vertical-align:-5px;margin-right:7px}
 .retour{display:inline-block;margin-top:6px;font-size:13px;font-weight:600;text-decoration:none}
 .jours{display:flex;gap:6px;overflow-x:auto;padding:10px 12px;background:var(--mer2);scrollbar-width:thin}
 .jour{flex:0 0 auto;border:0;border-radius:10px;padding:6px 9px;background:rgba(255,255,255,.12);color:#fff;font:inherit;cursor:pointer;text-align:center;min-width:52px}
@@ -111,14 +119,14 @@ main.nuit::after{box-shadow:inset 0 0 90px rgba(0,0,0,.55)}
   .app.plein aside{max-height:85dvh}
 }
 .mob{display:none}
-@media (max-width:820px){.mob{display:block;position:absolute;top:10px;left:56px;z-index:500;background:var(--mer);color:#fff;border-radius:10px;padding:7px 11px;font-family:Lora,Georgia,serif;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.25)}}
+@media (max-width:820px){.mob{display:flex;align-items:center;position:absolute;top:10px;left:56px;z-index:500;background:var(--mer);color:#fff;border-radius:10px;padding:7px 11px;font-family:Lora,Georgia,serif;font-size:15px;box-shadow:0 2px 8px rgba(0,0,0,.25)}}
 </style>
 </head>
 <body>
 <div class="app" id="app">
   <aside>
     <header>
-      <div class="sur">Que faire à Carantec et ses environs ?</div>
+      <a class="brand" href="./" aria-label="Que faire à Carantec et ses environs ? Retour à l'agenda"><svg class="q" viewBox="0 0 180 262" aria-hidden="true"><path d="M 38 74 C 38 18, 142 18, 142 74 C 142 116, 90 112, 90 164" fill="none" stroke="#C8287A" stroke-width="34" stroke-linecap="round"/><circle cx="90" cy="214" r="23" fill="#F2C230" stroke="#D99A00" stroke-width="3"/><path d="M 40 248 q 12 -10 25 0 t 25 0 t 25 0 t 25 0" fill="none" stroke="#8fe0d2" stroke-width="7" stroke-linecap="round"/></svg><span><span class="b1">Que faire à</span><span class="b2">Carantec</span><span class="b3">et ses environs ?</span></span></a>
       <h1>La carte du jour</h1>
       <a class="retour" href="./">← Retour à l'agenda</a>
     </header>
@@ -135,7 +143,7 @@ main.nuit::after{box-shadow:inset 0 0 90px rgba(0,0,0,.55)}
   </aside>
   <main>
     <div id="map" role="application" aria-label="Carte de Carantec et des environs"></div>
-    <a class="mob" href="./">← Agenda · La carte du jour</a>
+    <a class="mob" href="./"><svg class="q" viewBox="0 0 180 262" aria-hidden="true"><path d="M 38 74 C 38 18, 142 18, 142 74 C 142 116, 90 112, 90 164" fill="none" stroke="#C8287A" stroke-width="34" stroke-linecap="round"/><circle cx="90" cy="214" r="23" fill="#F2C230" stroke="#D99A00" stroke-width="3"/><path d="M 40 248 q 12 -10 25 0 t 25 0 t 25 0 t 25 0" fill="none" stroke="#8fe0d2" stroke-width="7" stroke-linecap="round"/></svg><span>La carte du jour</span></a>
     <div class="ctrl">
       <button id="bCarantec">📍 Carantec</button>
       <button id="bEnvirons">🔭 Les environs</button>
@@ -547,13 +555,13 @@ function etatCallot(s){
   const c=CALLOT[s]; if(!c) return null;
   const creneaux=c.slots.map(([a,b])=>hTxt(a)+" → "+hTxt(b)).join(" · ")||"Aucun passage ce jour-là";
   const now=new Date(), auj=iso(now)===s, m=now.getHours()*60+now.getMinutes();
-  let statut="jour", txt=creneaux;
+  let statut="jour", txt=creneaux, court="🌊 Callot "+(c.slots.map(([a,b])=>hTxt(a)+"–"+hTxt(b)).join(" · ")||": aucun passage");
   if(auj){
     const ouvert=c.slots.find(([a,b])=>m>=hMin(a)&&m<hMin(b));
-    if(ouvert){statut="ok";txt="Praticable maintenant, jusqu'à "+hTxt(ouvert[1]);}
-    else{const proch=c.slots.find(([a])=>hMin(a)>m);statut="ko";txt="Submergée"+(proch?" · prochain passage à "+hTxt(proch[0]):" jusqu'à demain");}
+    if(ouvert){statut="ok";txt="Praticable maintenant, de "+hTxt(ouvert[0])+" à "+hTxt(ouvert[1]);court="✓ Callot de "+hTxt(ouvert[0])+" à "+hTxt(ouvert[1]);}
+    else{const proch=c.slots.find(([a])=>hMin(a)>m);statut="ko";txt="Submergée"+(proch?" · prochain passage de "+hTxt(proch[0])+" à "+hTxt(proch[1]):" jusqu'à demain");court=proch?"✕ Callot : passage de "+hTxt(proch[0])+" à "+hTxt(proch[1]):"✕ Callot submergée";}
   }
-  return {statut,txt,creneaux,coef:(c.coef||"").replace(",", " / ")};
+  return {statut,txt,court,creneaux,coef:(c.coef||"").replace(",", " / ")};
 }
 const COUL_CALLOT={ok:"#2f9e5b",ko:"#d1495b",jour:"#2f8a7d"};
 const calqueCallot=L.layerGroup();
@@ -566,7 +574,7 @@ function dessinerCallot(){
     <div class="approx">Horaires de l'office de tourisme (données Shom), variables avec la météo. Ne vous engagez jamais si la mer est déjà sur la route.</div></div>`;
   calqueCallot.addLayer(L.polyline(ROUTE_CALLOT,{color:"#ffffff",weight:9,opacity:.9}));
   calqueCallot.addLayer(L.polyline(ROUTE_CALLOT,{color:col,weight:5,opacity:1,dashArray:e.statut==="ko"?"8 7":null}).bindPopup(pop));
-  const pill=e.statut==="ok"?"✓ Callot jusqu'à "+e.txt.split("jusqu'à ")[1]:e.statut==="ko"?"✕ Callot submergée":"🌊 Callot";
+  const pill=e.court;
   calqueCallot.addLayer(L.marker([48.6788,-3.92418],{zIndexOffset:900,icon:L.divIcon({className:"",html:`<div class="callot-pill" style="background:${col}">${esc(pill)}</div>`,iconSize:[0,0]})}).bindPopup(pop));
 }
 function blocCallot(){
