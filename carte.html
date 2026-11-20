@@ -74,6 +74,14 @@ main::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:450
 main.nuit::after{box-shadow:inset 0 0 90px rgba(0,0,0,.55)}
 .pin,.pt-lieu{filter:drop-shadow(0 3px 4px rgba(20,50,35,.35))}
 .legende{position:absolute;left:12px;bottom:24px;z-index:500;background:rgba(255,255,255,.95);border-radius:10px;padding:8px 10px;font-size:12px;box-shadow:0 2px 8px rgba(0,0,0,.15);line-height:1.7}
+.lg-sentier,.lg-callot{display:inline-block;width:18px;height:0;margin-right:6px;vertical-align:3px}
+.lg-sentier{border-top:2px dotted #3f8a5c}
+.lg-callot{border-top:4px solid #2f9e5b;border-radius:2px}
+.callot-pill{transform:translate(-50%,-50%);white-space:nowrap;font-size:12px;font-weight:600;padding:4px 9px;border-radius:999px;color:#fff;box-shadow:0 2px 6px rgba(0,0,0,.3);cursor:pointer}
+.cal{margin:10px 16px 2px;padding:10px 12px;border-radius:12px;background:#e2f2ef;font-size:13px;line-height:1.45;cursor:pointer}
+.cal b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2f8a7d}
+.cal .ok{color:#1f7a45;font-weight:600}.cal .ko{color:#b42318;font-weight:600}
+.cal small{display:block;color:var(--gris);font-size:11.5px;margin-top:4px}
 .legende i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
 /* Marqueurs */
 .pin{width:34px;height:34px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--c);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center}
@@ -131,13 +139,14 @@ main.nuit::after{box-shadow:inset 0 0 90px rgba(0,0,0,.55)}
     <div class="ctrl">
       <button id="bCarantec">📍 Carantec</button>
       <button id="bEnvirons">🔭 Les environs</button>
-      <div class="fonds" id="fonds" aria-label="Style du fond de carte"><button data-fond="vert">🌿 Vert</button><button data-fond="nuit">🌙 Marine</button><button data-fond="osm">🗺️ Classique</button></div>
     </div>
     <div class="legende">
       <div><i style="background:var(--ev)"></i>Événements du jour</div>
       <div><i style="background:var(--bar)"></i>Bars & cafés</div>
       <div><i style="background:var(--resto)"></i>Restaurants</div>
       <div><i style="background:var(--pouce)"></i>Sur le pouce & apéro</div>
+      <div><span class="lg-sentier"></span>Sentiers, dont le GR 34</div>
+      <div><span class="lg-callot"></span>Route submersible de Callot</div>
     </div>
   </main>
 </div>
@@ -486,6 +495,85 @@ function semaineHTML(p,s){
 }
 const lien = o => o.u?`<div style="margin-top:6px"><a href="${esc(o.u)}" target="_blank" rel="noopener">🔗 ${esc(o.un||"Site web")}</a></div>`:"";
 
+/* ---------- Île Callot : créneaux où la route submersible est praticable (copie de CALLOT_RAW du site) ---------- */
+const CALLOT_RAW=`2026-11-20 07h03-09h38,19h02-22h36 46,51
+2026-11-21 07h30-11h01,19h39-23h42 57,64
+2026-11-22 08h04-12h06,20h18-24h00 70,76
+2026-11-23 00h00-00h38,08h41-13h02,20h59-24h00 81,86
+2026-11-24 00h00-01h28,09h21-13h53,21h43-24h00 90,93
+2026-11-25 00h00-02h15,10h04-14h43,22h28-24h00 96,97
+2026-11-26 00h00-03h01,10h49-15h31,23h17-24h00 97,96
+2026-11-27 00h00-03h46,11h38-16h19 94,90
+2026-11-28 00h10-04h30,12h32-17h07 86,82
+2026-11-29 01h08-05h15,13h33-17h55 76,71
+2026-11-30 02h13-06h01,14h40-18h46 66,62
+2026-12-01 03h26-06h51,15h55-19h41 58,55
+2026-12-02 04h42-07h48,17h10-20h43 53
+2026-12-03 05h53-08h56,18h18-21h49 52,53
+2026-12-04 06h52-10h08,19h13-22h53 54,57
+2026-12-05 07h41-11h15,20h01-23h50 59,62
+2026-12-06 08h24-12h14,20h43-24h00 64,66
+2026-12-07 00h00-00h40,09h03-13h03,21h22-24h00 69,70
+2026-12-08 00h00-01h23,09h40-13h47,21h59-24h00 72,73
+2026-12-09 00h00-02h02,10h15-14h26,22h34-24h00 74,74
+2026-12-10 00h00-02h37,10h49-15h02,23h09-24h00 74,73
+2026-12-11 00h00-03h10,11h24-15h35,23h45-24h00 72,71
+2026-12-12 00h00-03h41,12h00-16h07 69,67
+2026-12-13 00h22-04h11,12h38-16h38 65,63
+2026-12-14 01h02-04h40,13h19-17h09 60,57
+2026-12-15 01h46-05h10,14h05-17h42 55,52
+2026-12-16 02h39-05h42,14h59-18h19 49,47
+2026-12-17 03h41-06h20,16h01-19h05 45,44
+2026-12-18 04h50-07h12,17h06-20h07 44
+2026-12-19 05h54-08h28,18h08-21h25 45,48
+2026-12-20 06h46-09h56,19h02-22h43 51,55
+2026-12-21 07h33-11h18,19h53-23h54 61,66
+2026-12-22 08h19-12h30,20h42-24h00 72,77
+2026-12-23 00h00-00h58,09h05-13h34,21h31-24h00 83,87
+2026-12-24 00h00-01h56,09h52-14h32,22h20-24h00 91,95
+2026-12-25 00h00-02h50,10h40-15h27,23h10-24h00 97,99
+2026-12-26 00h00-03h41,11h31-16h19 99,98
+2026-12-27 00h01-04h30,12h22-17h07 96,93
+2026-12-28 00h52-05h16,13h15-17h52 89,84
+2026-12-29 01h46-05h59,14h11-18h34 78,73
+2026-12-30 02h43-06h39,15h10-19h12 67,61
+2026-12-31 03h45-07h18,16h17-19h50 55`;
+const CALLOT={};
+CALLOT_RAW.split("\n").forEach(l=>{const [d,sl,co]=l.trim().split(" ");CALLOT[d]={slots:sl==="AUCUN"?[]:sl.split(",").map(x=>x.split("-")),coef:co};});
+const ROUTE_CALLOT=[[48.67623,-3.92460],[48.67696,-3.92440],[48.67738,-3.92433],[48.67971,-3.92404],[48.68038,-3.92384]];
+const hTxt=h=>h==="24h00"?"minuit":h==="00h00"?"minuit":h.replace(/^0/,"");
+const hMin=h=>{const [a,b]=h.split("h");return +a*60+(+b||0);};
+function etatCallot(s){
+  const c=CALLOT[s]; if(!c) return null;
+  const creneaux=c.slots.map(([a,b])=>hTxt(a)+" → "+hTxt(b)).join(" · ")||"Aucun passage ce jour-là";
+  const now=new Date(), auj=iso(now)===s, m=now.getHours()*60+now.getMinutes();
+  let statut="jour", txt=creneaux;
+  if(auj){
+    const ouvert=c.slots.find(([a,b])=>m>=hMin(a)&&m<hMin(b));
+    if(ouvert){statut="ok";txt="Praticable maintenant, jusqu'à "+hTxt(ouvert[1]);}
+    else{const proch=c.slots.find(([a])=>hMin(a)>m);statut="ko";txt="Submergée"+(proch?" · prochain passage à "+hTxt(proch[0]):" jusqu'à demain");}
+  }
+  return {statut,txt,creneaux,coef:(c.coef||"").replace(",", " / ")};
+}
+const COUL_CALLOT={ok:"#2f9e5b",ko:"#d1495b",jour:"#2f8a7d"};
+const calqueCallot=L.layerGroup();
+function dessinerCallot(){
+  calqueCallot.clearLayers();
+  const e=etatCallot(etat.jour); if(!e) return;
+  const col=COUL_CALLOT[e.statut];
+  const pop=`<div class="pop"><h3>🌊 Route submersible de Callot</h3><div class="ty">Créneaux praticables ce jour-là · coefficient ${esc(e.coef)}</div>
+    ${e.statut!=="jour"?`<div class="${e.statut}" style="font-weight:600;color:${col}">${esc(e.txt)}</div>`:""}<div>${esc(e.creneaux)}</div>
+    <div class="approx">Horaires de l'office de tourisme (données Shom), variables avec la météo. Ne vous engagez jamais si la mer est déjà sur la route.</div></div>`;
+  calqueCallot.addLayer(L.polyline(ROUTE_CALLOT,{color:"#ffffff",weight:9,opacity:.9}));
+  calqueCallot.addLayer(L.polyline(ROUTE_CALLOT,{color:col,weight:5,opacity:1,dashArray:e.statut==="ko"?"8 7":null}).bindPopup(pop));
+  const pill=e.statut==="ok"?"✓ Callot jusqu'à "+e.txt.split("jusqu'à ")[1]:e.statut==="ko"?"✕ Callot submergée":"🌊 Callot";
+  calqueCallot.addLayer(L.marker([48.6788,-3.9258],{zIndexOffset:900,icon:L.divIcon({className:"",html:`<div class="callot-pill" style="background:${col}">${esc(pill)}</div>`,iconSize:[0,0]})}).bindPopup(pop));
+}
+function blocCallot(){
+  const e=etatCallot(etat.jour); if(!e) return "";
+  return `<div class="cal" id="calBloc"><b>🌊 Passage vers l'île Callot</b>${e.statut==="jour"?"":`<span class="${e.statut}">${esc(e.txt)}</span><br>`}Créneaux : ${esc(e.creneaux)}<small>Coefficient ${esc(e.coef)} · horaires variables avec la météo</small></div>`;
+}
+
 /* ---------- État ---------- */
 const etat = {jour:null, f:{ev:true,bar:true,resto:true,pouce:false,reg:false,fermes:false}};
 try{const sv=JSON.parse(localStorage.getItem("carteCarantecFiltres")||"null"); if(sv) Object.assign(etat.f,sv);}catch(e){}
@@ -496,7 +584,7 @@ const map=L.map("map",{zoomControl:true,attributionControl:true}).setView(CARANT
 /* ---------- Fonds de carte : vectoriels stylisés (OpenFreeMap) ou classique (OSM) ---------- */
 const ATTR_OSM='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
 const THEMES={
-  vert:{vagues:1,ombreBati:"#bccbb0",bg:"#edf2e6",parc:"#d0e3bf",bois:"#c2d9ae",resid:"#e6ede0",eau:"#a3d2c7",bati:"#dfe7d5",batiTrait:"#c2d0b6",
+  vert:{vagues:1,sentier:"#3f8a5c",ombreBati:"#bccbb0",bg:"#edf2e6",parc:"#d0e3bf",bois:"#c2d9ae",resid:"#e6ede0",eau:"#a3d2c7",bati:"#dfe7d5",batiTrait:"#c2d0b6",
         route:"#ffffff",bord:"#a9c39e",mineure:"#ffffff",chemin:"#b3cba8",rail:"#b5c4ad",limite:"#9db58f",
         texte:"#35513f",halo:"#f4f8f0",texteEau:"#2b6d63",ombre:"#1f5547",ombreOp:.30,cote:"#3f8a76",k:.55},
   nuit:{bg:"#13303b",parc:"#174039",bois:"#16443a",resid:"#163842",eau:"#0a1e27",bati:"#1d4550",batiTrait:"#27596a",
@@ -527,7 +615,10 @@ function styliser(style,t){
       if(sl==="transportation"){
         if(/rail/.test(id)) p["line-color"]=t.rail;
         else if(/casing/.test(id)) p["line-color"]=t.bord;
-        else if(/path|pier/.test(id)){p["line-color"]=t.chemin;p["line-dasharray"]=[2,2];}
+        else if(/path|pier/.test(id)){
+          if(t.sentier){p["line-color"]=t.sentier;p["line-dasharray"]=[1,1.6];p["line-width"]=["interpolate",["linear"],["zoom"],12,.8,15,1.6,18,2.6];p["line-opacity"]=.9;}
+          else {p["line-color"]=t.chemin;p["line-dasharray"]=[2,2];}
+        }
         else if(/minor/.test(id)) p["line-color"]=t.mineure;
         else p["line-color"]=t.route;
       } else if(sl==="boundary"){p["line-color"]=t.limite;}
@@ -585,13 +676,11 @@ async function changerFond(nom){
   }
   if(choisi==="osm"){ fondActuel=osm.addTo(map); }
   document.querySelector("main").classList.toggle("nuit",choisi==="nuit");
-  document.querySelectorAll("#fonds button").forEach(b=>b.classList.toggle("on",b.dataset.fond===choisi));
-  try{localStorage.setItem("carteCarantecFond",choisi);}catch(e){}
 }
-document.querySelectorAll("#fonds button").forEach(b=>b.addEventListener("click",()=>changerFond(b.dataset.fond)));
-let fondDepart="vert"; try{fondDepart=localStorage.getItem("carteCarantecFond")||"vert";}catch(e){}
-changerFond(fondDepart);
+changerFond("vert");
 const calque=L.layerGroup().addTo(map);
+calqueCallot.addTo(map);
+setInterval(()=>{if(etat.jour===iso(new Date())){dessinerCallot();}},60000);
 const marqueursEv=new Map();
 
 function pinEv(emo,n){return L.divIcon({className:"",html:`<div class="pin" style="--c:${COUL.ev}"><span>${emo}</span>${n>1?`<em>${n}</em>`:""}</div>`,iconSize:[34,34],iconAnchor:[17,34],popupAnchor:[0,-30]});}
@@ -629,6 +718,7 @@ function dessiner(){
       calque.addLayer(m); marqueursEv.set(cle,m);
     }
   }
+  dessinerCallot();
   liste(evs);
 }
 
@@ -639,6 +729,7 @@ function liste(evs){
   const item=e=>`<div class="it" data-cle="${esc(e._lieu?e._lieu.cle:lieuDe(e).cle)}"><div class="emo">${EMO[e.k]||"🎉"}</div><div>
     <div class="h">${esc(e.h)}${e.f?"–"+esc(e.f):""}</div><div class="t">${esc(e.t)}${e.complet?'<span class="badge b-complet">Complet</span>':""}</div>
     <div class="l">${esc(e.c)}${e.l?" · "+esc(e.l):""}</div>${e.p?`<div class="p">${esc(e.p)}</div>`:""}</div></div>`;
+  h+=blocCallot();
   if(etat.f.ev){
     const ici=evs.filter(e=>e.c==="Carantec"), autour=evs.filter(e=>e.c!=="Carantec");
     h+=`<div class="sec">À Carantec</div>`+(ici.length?ici.map(item).join(""):`<div class="vide">Pas d'événement repéré à Carantec ce jour-là.</div>`);
@@ -653,6 +744,7 @@ function liste(evs){
   }
   h+=`<p class="note">Données du site quefaireacarantec.fr, mises à jour le ${MAJ}. Horaires des bars et restaurants relevés en novembre 2026 : ils peuvent changer (affluence, congés, fêtes). Adresses placées avec la Base Adresse Nationale et vérifiées sur Google Maps.</p>`;
   el.innerHTML=h;
+  const cb=document.getElementById("calBloc"); if(cb) cb.onclick=()=>{map.flyTo([48.6785,-3.9245],15,{duration:.6});};
   el.querySelectorAll(".it[data-cle]").forEach(d=>d.addEventListener("click",()=>{const m=marqueursEv.get(d.dataset.cle);if(m){map.flyTo(m.getLatLng(),Math.max(map.getZoom(),15),{duration:.6});setTimeout(()=>m.openPopup(),650);}}));
   el.querySelectorAll(".it[data-place]").forEach(d=>d.addEventListener("click",()=>{
     calque.eachLayer(m=>{if(m.options.title===d.dataset.place){map.flyTo(m.getLatLng(),17,{duration:.6});setTimeout(()=>m.openPopup(),650);}});
