@@ -62,6 +62,13 @@ main{position:relative;min-height:0}
 .fonds{display:flex;gap:4px;background:rgba(255,255,255,.95);border-radius:10px;padding:4px;box-shadow:0 2px 8px rgba(0,0,0,.18)}
 .fonds button{box-shadow:none;padding:6px 9px;font-size:12px;border-radius:7px;background:transparent}
 .fonds button.on{background:var(--mer);color:#fff}
+.leaflet-bar{border:0!important;box-shadow:0 2px 8px rgba(25,70,50,.25)!important;border-radius:10px!important;overflow:hidden}
+.leaflet-bar a{color:#2f6e5a!important}
+.leaflet-popup-content-wrapper{border-radius:14px;border-top:4px solid #3A9E8F;box-shadow:0 6px 20px rgba(25,70,50,.25)}
+.nom-lieu{font-family:Lora,Georgia,serif;font-style:italic;font-weight:600;font-size:13px;color:#2b6d63;white-space:nowrap;text-shadow:0 0 3px #f4f8f0,0 0 3px #f4f8f0,0 0 6px #f4f8f0;transform:translate(-50%,-50%);pointer-events:none;letter-spacing:.02em}
+.nom-lieu.terre{color:#4b6b55;font-size:12px}
+.nom-lieu.grand{font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:#4f9d8c;opacity:.85}
+main.nuit .nom-lieu{color:#9fe0d3;text-shadow:0 0 4px #0a1e27,0 0 4px #0a1e27}
 main::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:450;box-shadow:inset 0 0 70px rgba(25,70,50,.28)}
 main.nuit::after{box-shadow:inset 0 0 90px rgba(0,0,0,.55)}
 .pin,.pt-lieu{filter:drop-shadow(0 3px 4px rgba(20,50,35,.35))}
@@ -488,7 +495,7 @@ const map=L.map("map",{zoomControl:true,attributionControl:true}).setView(CARANT
 /* ---------- Fonds de carte : vectoriels stylisés (OpenFreeMap) ou classique (OSM) ---------- */
 const ATTR_OSM='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
 const THEMES={
-  vert:{bg:"#eef3e8",parc:"#d3e5c4",bois:"#c6dcb4",resid:"#e7eedf",eau:"#9fd0c5",bati:"#dfe7d5",batiTrait:"#c2d0b6",
+  vert:{vagues:1,ombreBati:"#bccbb0",bg:"#edf2e6",parc:"#d0e3bf",bois:"#c2d9ae",resid:"#e6ede0",eau:"#a3d2c7",bati:"#dfe7d5",batiTrait:"#c2d0b6",
         route:"#ffffff",bord:"#a9c39e",mineure:"#ffffff",chemin:"#b3cba8",rail:"#b5c4ad",limite:"#9db58f",
         texte:"#35513f",halo:"#f4f8f0",texteEau:"#2b6d63",ombre:"#1f5547",ombreOp:.30,cote:"#3f8a76",k:.55},
   nuit:{bg:"#13303b",parc:"#174039",bois:"#16443a",resid:"#163842",eau:"#0a1e27",bati:"#1d4550",batiTrait:"#27596a",
@@ -528,7 +535,16 @@ function styliser(style,t){
     else if(l.type==="symbol"){
       p["text-color"]=/water/.test(id)?t.texteEau:t.texte; p["text-halo-color"]=t.halo; p["text-halo-width"]=1.4;
     }
+    if(id==="building" && t.ombreBati){ // ombre portée des bâtiments
+      out.push({id:"bati-ombre",type:"fill",source:"openmaptiles","source-layer":"building",minzoom:14,
+        paint:{"fill-color":t.ombreBati,"fill-translate":[1.6,1.6],"fill-opacity":["interpolate",["linear"],["zoom"],14,0,15.5,.9]}});
+    }
+    if(l.type==="symbol" && /water/.test(id)) l.layout={...(l.layout||{}),"text-font":["Noto Sans Italic"],"text-letter-spacing":.15};
     out.push(l);
+    if(id==="water" && t.vagues){ // lignes de rivage façon carte ancienne
+      [[3,.55],[7,.35],[12,.2]].forEach(([o,op],i)=>out.push({id:"vague"+i,type:"line",source:"openmaptiles","source-layer":"water",minzoom:11,
+        paint:{"line-color":"#4f9d8c","line-width":.7,"line-offset":["interpolate",["linear"],["zoom"],11,o*.4,16,o],"line-opacity":op}}));
+    }
     if(id==="water"){ // ombre douce le long du littoral + trait de côte fin
       out.push({id:"cote-ombre",type:"line",source:"openmaptiles","source-layer":"water",
         paint:{"line-color":t.ombre,"line-opacity":t.ombreOp,"line-blur":["interpolate",["linear"],["zoom"],8,3,16,14],"line-width":["interpolate",["linear"],["zoom"],8,4,16,18]}});
@@ -538,6 +554,21 @@ function styliser(style,t){
   }
   style.layers=out; return style;
 }
+/* ---------- Noms des lieux remarquables (positions Google Maps) ---------- */
+const NOMS=[
+  ["Île Callot",48.6862,-3.9268,"",12],["Chapelle de Callot",48.6916,-3.9250,"terre",15],
+  ["Île Louët",48.6745,-3.8887,"",13],["Château du Taureau",48.6787,-3.8858,"",13],
+  ["Pointe de Penn al Lann",48.6709,-3.8930,"terre",14],["Plage du Kélenn",48.6676,-3.9068,"",14],
+  ["Grève Blanche",48.6758,-3.9205,"",14],["Port de Carantec",48.6738,-3.9238,"",15],
+  ["La Chaise du Curé",48.6737,-3.9136,"terre",15],["Baie de Morlaix",48.6560,-3.8800,"grand",11]
+];
+const calqueNoms=L.layerGroup().addTo(map);
+function majNoms(){
+  const z=map.getZoom(); calqueNoms.clearLayers();
+  for(const [n,la,lo,cl,zmin] of NOMS) if(z>=zmin && !(cl==="grand"&&z>14))
+    calqueNoms.addLayer(L.marker([la,lo],{interactive:false,keyboard:false,zIndexOffset:-1000,icon:L.divIcon({className:"",html:`<div class="nom-lieu ${cl}">${n}</div>`,iconSize:[0,0]})}));
+}
+map.on("zoomend",majNoms); majNoms();
 let fondActuel=null, styleBase=null;
 const osm=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:ATTR_OSM});
 async function changerFond(nom){
