@@ -475,9 +475,9 @@ try{const sv=JSON.parse(localStorage.getItem("carteCarantecFiltres")||"null"); i
 /* ---------- Carte ---------- */
 const CARANTEC=[48.6678,-3.9140];
 const map=L.map("map",{zoomControl:true,attributionControl:true}).setView(CARANTEC,16);
-L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{
-  maxZoom:19,subdomains:"abcd",
-  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a> · adresses : BAN'
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
+  maxZoom:19,
+  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 const calque=L.layerGroup().addTo(map);
 const marqueursEv=new Map();
