@@ -77,7 +77,7 @@ main.nuit::after{box-shadow:inset 0 0 90px rgba(0,0,0,.55)}
 .lg-sentier,.lg-callot{display:inline-block;width:18px;height:0;margin-right:6px;vertical-align:3px}
 .lg-sentier{border-top:2px dotted #3f8a5c}
 .lg-callot{border-top:4px solid #2f9e5b;border-radius:2px}
-.callot-pill{transform:translate(-50%,-50%);white-space:nowrap;font-size:12px;font-weight:600;padding:4px 9px;border-radius:999px;color:#fff;box-shadow:0 2px 6px rgba(0,0,0,.3);cursor:pointer}
+.callot-pill{display:inline-block;width:max-content;transform:translate(-100%,-50%);margin-left:-10px;white-space:nowrap;font-size:12px;font-weight:600;padding:4px 9px;border-radius:999px;color:#fff;box-shadow:0 2px 6px rgba(0,0,0,.3);cursor:pointer}
 .cal{margin:10px 16px 2px;padding:10px 12px;border-radius:12px;background:#e2f2ef;font-size:13px;line-height:1.45;cursor:pointer}
 .cal b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2f8a7d}
 .cal .ok{color:#1f7a45;font-weight:600}.cal .ko{color:#b42318;font-weight:600}
@@ -567,7 +567,7 @@ function dessinerCallot(){
   calqueCallot.addLayer(L.polyline(ROUTE_CALLOT,{color:"#ffffff",weight:9,opacity:.9}));
   calqueCallot.addLayer(L.polyline(ROUTE_CALLOT,{color:col,weight:5,opacity:1,dashArray:e.statut==="ko"?"8 7":null}).bindPopup(pop));
   const pill=e.statut==="ok"?"✓ Callot jusqu'à "+e.txt.split("jusqu'à ")[1]:e.statut==="ko"?"✕ Callot submergée":"🌊 Callot";
-  calqueCallot.addLayer(L.marker([48.6788,-3.9258],{zIndexOffset:900,icon:L.divIcon({className:"",html:`<div class="callot-pill" style="background:${col}">${esc(pill)}</div>`,iconSize:[0,0]})}).bindPopup(pop));
+  calqueCallot.addLayer(L.marker([48.6788,-3.92418],{zIndexOffset:900,icon:L.divIcon({className:"",html:`<div class="callot-pill" style="background:${col}">${esc(pill)}</div>`,iconSize:[0,0]})}).bindPopup(pop));
 }
 function blocCallot(){
   const e=etatCallot(etat.jour); if(!e) return "";
