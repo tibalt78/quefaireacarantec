@@ -240,7 +240,7 @@ h1,h2,.d .n,.dayhead h3,.wd h4{font-family:Lora,Georgia,serif}
 <!-- CALLOT -->
 <section id="callot">
   <h2>Passer à l'île Callot</h2>
-  <p class="sub">Créneaux où la route submersible est praticable, d'après le calendrier 2026 de l'office de tourisme (données Shom).</p>
+  <p class="sub">Créneaux où la route submersible est praticable, d'après le calendrier de l'<a href="https://www.baiedemorlaix.bzh" target="_blank" rel="noopener">Office de tourisme Baie de Morlaix</a> (données Shom). <a href="/callot.html">Tous les horaires et le statut en direct →</a></p>
   <div class="warn">⚠️ Les horaires peuvent varier avec la météo (vent, pression). Ne vous engagez jamais sur la route si la mer est déjà dessus, et repartez avant la fin du créneau.</div>
   <table class="ctable" id="ctable"></table>
 </section>
@@ -815,7 +815,7 @@ function renderDay(){
     $("#callotDay").innerHTML = `<div class="callot ${c.slots.length?"":"none"}"><img src="img/callot.jpg" alt="">
       <div><b>Passage vers l'île Callot</b>
       <div class="slots">${c.slots.length?c.slots.map(s=>`<span class="slot">${s}</span>`).join(""):'<span class="slot">Pas de passage (coefficient trop faible)</span>'}</div>
-      <small>Coefficient ${c.coef.replace(","," / ")} · horaires indicatifs, selon la météo</small></div></div>`;
+      <small>Coefficient ${c.coef.replace(","," / ")} · horaires indicatifs, selon la météo · source : Office de tourisme Baie de Morlaix (Shom)</small></div></div>`;
   } else $("#callotDay").innerHTML="";
   // Événements
   const {dated,weekly}=eventsFor(sel);
