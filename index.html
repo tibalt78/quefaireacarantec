@@ -747,7 +747,9 @@ const CALLOT_RAW = `2026-11-01 02h25-05h53,14h59-18h38 56,51
 2026-12-31 03h45-07h18,16h17-19h50 55`;
 
 // Vacances scolaires (zone B) : Noël 2026
-const VACANCES = [["2026-12-19","2027-01-03"]];
+// Vacances scolaires zone B (académie de Rennes), arrêté du 22/10/2025 (service-public.gouv.fr).
+// Été 2027 : fin des cours le 03/07 ; date de rentrée 2027 non publiée → fin provisoire au 31/08, à vérifier.
+const VACANCES = [["2026-12-19","2027-01-03"],["2027-02-20","2027-03-07"],["2027-04-17","2027-05-02"],["2027-07-03","2027-08-31"]];
 
 /* ===================== LOGIQUE ===================== */
 const TODAY = (()=>{const n=new Date();return n.getFullYear()+"-"+String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0")})();
