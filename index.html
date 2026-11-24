@@ -514,6 +514,7 @@ const WEEKLY = [
  {w:1,h:"10h",f:"11h",t:"Gym Pour Tous : renforcement musculaire",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
  {w:1,h:"11h15",f:"12h15",t:"Gym Pour Tous : renforcement musculaire",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
  {w:1,h:"14h",f:"15h",t:"Gym Pour Tous : gym douce",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
+ {w:1,h:"9h",f:"10h",t:"Pilates avec Nathalie Doner (Atousports)",c:"Carantec",l:"Salle de l'Île aux Dames",k:"sport",p:"15 € la séance",x:"Tout niveau · sur inscription au 06 02 37 62 35",vac:1,u:"https://www.instagram.com/nathaliedoner/",un:"Instagram de Nathalie",u2:"https://www.instagram.com/atousports.landivisiau/",un2:"Atousports"},
  {w:2,h:"11h",f:"12h",t:"Gym Pour Tous : pilates",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
  {w:2,h:"17h30",f:"18h30",t:"Gym Pour Tous : stretching",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
  {w:2,h:"12h30",f:"13h30",t:"Hatha Flow avec Gaëlle Naturo Yoga",c:"Carantec",l:"Salle de l'Île aux Dames",k:"sport",p:"16 € la séance",x:"Sur inscription · 06 77 96 81 46",u:"https://www.gaellenaturoyoga.com"},
@@ -523,6 +524,7 @@ const WEEKLY = [
  {w:4,h:"9h",f:"10h",t:"Gym Pour Tous : renforcement musculaire",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
  {w:4,h:"10h15",f:"11h15",t:"Gym Pour Tous : gym hommes",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
  {w:4,h:"17h",f:"18h",t:"Gym Pour Tous : pilates",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
+ {w:4,h:"20h30",f:"21h30",t:"Pilates avec Nathalie Doner (Atousports)",c:"Carantec",l:"Salle de l'Île aux Dames",k:"sport",p:"15 € la séance",x:"Tout niveau · sur inscription au 06 02 37 62 35",vac:1,u:"https://www.instagram.com/nathaliedoner/",un:"Instagram de Nathalie",u2:"https://www.instagram.com/atousports.landivisiau/",un2:"Atousports"},
  {w:4,h:"20h",f:"22h",t:"Tennis de table, entraînement tous niveaux",c:"Carantec",l:"Salle du Menneyer",k:"sport"},
  {w:5,h:"10h30",f:"11h30",t:"Gym Pour Tous : stretching",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
  {w:5,h:"11h30",f:"12h30",t:"Gym Pour Tous : stretching",c:"Carantec",l:"Salle Maurice-Guyomard",k:"sport",vac:1},
@@ -561,7 +563,8 @@ function lien(e){
   const r=LIENS.find(x=>x.m.test(txt));
   return r?{u:r.u,n:r.n}:null;
 }
-const lienHTML = (e,cls="tag lien")=>{const L=lien(e);return L?`<a class="${cls}" href="${esc(L.u)}" target="_blank" rel="noopener">🔗 ${esc(L.n)}</a>`:""};
+// Second lien facultatif : u2 / un2 (affiché après le premier).
+const lienHTML = (e,cls="tag lien")=>{const L=lien(e);const a=(u,n)=>`<a class="${cls}" href="${esc(u)}" target="_blank" rel="noopener">🔗 ${esc(n)}</a>`;return (L?a(L.u,L.n):"")+(e.u2?" "+a(e.u2,e.un2||"Site web"):"")};
 
 // Expositions et animations sur une période
 const PERIODS = [
